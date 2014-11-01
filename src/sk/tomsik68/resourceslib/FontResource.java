@@ -1,10 +1,11 @@
 package sk.tomsik68.resourceslib;
 
 
-import java.awt.Font;
+import org.newdawn.slick.TrueTypeFont;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
-import org.newdawn.slick.TrueTypeFont;
 
 class FontResource extends RawResource {
 

@@ -1,4 +1,4 @@
-package sk.exceptional.spongia14.fnc;
+package sk.exceptional.spongia14.pnc;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;

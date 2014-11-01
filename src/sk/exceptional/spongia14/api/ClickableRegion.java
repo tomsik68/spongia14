@@ -2,7 +2,7 @@ package sk.exceptional.spongia14.api;
 
 import java.util.ArrayList;
 
-public abstract class ClickableRegion {
+abstract class ClickableRegion {
 	private ArrayList<ClickAction> actions = new ArrayList<ClickAction>();
 	public ClickableRegion() {
 	}
