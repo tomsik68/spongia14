@@ -4,7 +4,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 
-import sk.exceptional.spongia14.api.ClickableRegionSet;
 import sk.exceptional.spongia14.api.Mission;
 import sk.tomsik68.resourceslib.Resources;
 
@@ -25,6 +24,7 @@ public class ClickableRegionSetContainer {
 
     public void render(Graphics gfx) {
 	gfx.drawImage(background, 0, 0);
+	regionSet.renderRegions(gfx);
     }
 
     public void update(Input input) {

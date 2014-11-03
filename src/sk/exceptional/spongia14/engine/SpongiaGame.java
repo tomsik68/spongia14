@@ -6,13 +6,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class SpongiaGame extends StateBasedGame {
 
-	public SpongiaGame() {
-		super("Exceptional Game");
-	}
+    public SpongiaGame() {
+	super("Exceptional Game");
+    }
 
-	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
-		addState(new TownMapGameState());
-	}
+    @Override
+    public void initStatesList(GameContainer arg0) throws SlickException {
+	addState(new InRegionSetGameState());
+    }
 
 }

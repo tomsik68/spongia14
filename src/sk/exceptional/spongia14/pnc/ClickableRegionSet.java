@@ -1,7 +1,11 @@
-package sk.exceptional.spongia14.api;
+package sk.exceptional.spongia14.pnc;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import org.newdawn.slick.Graphics;
+
+import sk.exceptional.spongia14.api.Mission;
 
 public class ClickableRegionSet {
     private final String backgroundResource;
@@ -12,7 +16,7 @@ public class ClickableRegionSet {
 	backgroundResource = background;
     }
 
-    void addRegion(ClickableRegion region) {
+    public void addRegion(ClickableRegion region) {
 	regions.add(region);
     }
 
@@ -30,5 +34,11 @@ public class ClickableRegionSet {
 	}
 	regions.removeAll(toRemove);
 	toRemove.clear();
+    }
+
+    public void renderRegions(Graphics gfx) {
+	for (ClickableRegion region : regions) {
+	    region.render(gfx);
+	}
     }
 }

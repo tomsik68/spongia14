@@ -1,8 +1,8 @@
-package sk.exceptional.spongia14.api;
+package sk.exceptional.spongia14.pnc;
 
 public class RectangularClickableRegion extends ClickableRegion {
-    private final int x, y, w, h;
-    private boolean shouldRemove = false;
+    protected final int x, y, w, h;
+    protected boolean shouldRemove = false;
 
     public RectangularClickableRegion(int x, int y, int w, int h) {
 	this.x = x;

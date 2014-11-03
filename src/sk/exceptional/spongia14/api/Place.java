@@ -4,24 +4,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import sk.exceptional.spongia14.pnc.ItemContainer;
+import sk.exceptional.spongia14.pnc.PersonContainer;
+
 public class Place {
-    private final String id;
+    private final String id, backgroundImage;
     private ArrayList<ItemContainer> items = new ArrayList<ItemContainer>();
     private ArrayList<PersonContainer> people = new ArrayList<PersonContainer>();
 
-    public Place(String id) {
+    public Place(String id, String bgImage) {
 	this.id = id;
+	this.backgroundImage = bgImage;
     }
 
     public String getId() {
 	return id;
     }
 
-    final void addItem(ItemContainer item) {
+    public final void addItem(ItemContainer item) {
 	items.add(item);
     }
 
-    final void addPerson(PersonContainer person) {
+    public final void addPerson(PersonContainer person) {
 	people.add(person);
     }
 
@@ -31,5 +35,9 @@ public class Place {
 
     public final Collection<PersonContainer> getPeople() {
 	return Collections.unmodifiableList(people);
+    }
+
+    public String getBackgroundImage() {
+	return backgroundImage;
     }
 }

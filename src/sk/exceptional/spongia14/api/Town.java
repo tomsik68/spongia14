@@ -13,7 +13,7 @@ public class Town {
 	this.mapPlaceId = mapPlaceId;
     }
 
-    final void addPlace(Place place) {
+    public final void addPlace(Place place) {
 	places.put(place.getId(), place);
     }
 

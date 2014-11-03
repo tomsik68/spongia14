@@ -1,4 +1,6 @@
-package sk.exceptional.spongia14.api;
+package sk.exceptional.spongia14.pnc;
+
+import sk.exceptional.spongia14.api.Place;
 
 public class PlaceClickableRegionSet extends ClickableRegionSet {
     private final Place place;

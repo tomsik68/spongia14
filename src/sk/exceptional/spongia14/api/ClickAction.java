@@ -1,5 +1,7 @@
 package sk.exceptional.spongia14.api;
 
-interface ClickAction {
-    void execute(Mission mission, ClickableRegion clicked);
+import sk.exceptional.spongia14.pnc.ClickableRegion;
+
+public abstract class ClickAction {
+    public abstract void execute(Mission mission, ClickableRegion clicked);
 }
