@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 
-public class Mission {
+public final class Mission {
     private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
     private Town town;
 
-    public Town getTown() {
+    public Mission() {
+    }
+
+    public final Town getTown() {
 	return town;
     }
 
-    public void setTown(Town town) {
+    public final void setTown(Town town) {
 	this.town = town;
     }
 
@@ -20,7 +23,7 @@ public class Mission {
 	placeChangeListeners.add(listener);
     }
 
-    public void switchPlace(String newPlaceId) {
+    final void switchPlace(String newPlaceId) {
 	Place newPlace = town.getPlace(newPlaceId);
 	for (PlaceChangeListener listener : placeChangeListeners) {
 	    listener.placeSwitched(newPlace);
