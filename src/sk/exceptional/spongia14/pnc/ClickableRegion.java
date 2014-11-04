@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
 
-import sk.exceptional.spongia14.api.ClickAction;
+import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
 
 public abstract class ClickableRegion {
-    protected final ArrayList<ClickAction> actions = new ArrayList<ClickAction>();
+    protected final ArrayList<Action> actions = new ArrayList<Action>();
 
     public ClickableRegion() {
     }
@@ -18,13 +18,13 @@ public abstract class ClickableRegion {
 
     public abstract boolean shouldRemove();
 
-    public void addAction(ClickAction action) {
+    public void addAction(Action action) {
 	actions.add(action);
     }
 
     void onClick(Mission mission, MissionState state) {
-	for (ClickAction action : actions) {
-	    action.execute(mission, state, this);
+	for (Action action : actions) {
+	    action.execute(mission, state);
 	}
     }
 

@@ -5,11 +5,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import sk.exceptional.spongia14.api.ClickAction;
+import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Item;
 
 public class ItemContainer {
-    private final List<ClickAction> clickActions;
+    private final List<Action> clickActions;
     private final Item item;
     private final int x, y;
 
@@ -17,7 +17,7 @@ public class ItemContainer {
 	this.item = item;
 	this.x = x;
 	this.y = y;
-	clickActions = new ArrayList<ClickAction>();
+	clickActions = new ArrayList<Action>();
     }
 
     public int getX() {
@@ -32,11 +32,11 @@ public class ItemContainer {
 	return item;
     }
 
-    public final void addActions(ClickAction action) {
+    public final void addActions(Action action) {
 	clickActions.add(action);
     }
 
-    final Collection<ClickAction> getActions() {
+    final Collection<Action> getActions() {
 	return Collections.unmodifiableList(clickActions);
     }
 

@@ -1,8 +1,7 @@
 package sk.exceptional.spongia14.api;
 
-import sk.exceptional.spongia14.pnc.ClickableRegion;
 
-public class SwitchPlaceAction extends ClickAction {
+public class SwitchPlaceAction extends Action {
     private final String newPlaceId;
 
     public SwitchPlaceAction(String newPlace) {
@@ -10,8 +9,7 @@ public class SwitchPlaceAction extends ClickAction {
     }
 
     @Override
-    public void execute(Mission mission, MissionState state,
-	    ClickableRegion clicked) {
+    public void execute(Mission mission, MissionState state) {
 	mission.switchPlace(newPlaceId);
     }
 

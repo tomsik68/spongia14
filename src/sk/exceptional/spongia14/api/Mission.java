@@ -29,4 +29,8 @@ public final class Mission {
 	    listener.placeSwitched(newPlace);
 	}
     }
+
+    public Item getItem(String itemId) {
+	return null;
+    }
 }
