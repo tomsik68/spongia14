@@ -6,6 +6,7 @@ import java.util.HashSet;
 import org.newdawn.slick.Graphics;
 
 import sk.exceptional.spongia14.api.Mission;
+import sk.exceptional.spongia14.api.MissionState;
 
 public class ClickableRegionSet {
     private final String backgroundResource;
@@ -24,10 +25,10 @@ public class ClickableRegionSet {
 	return backgroundResource;
     }
 
-    public void onClick(Mission mission, int x, int y) {
+    public void onClick(Mission mission, MissionState state, int x, int y) {
 	for (ClickableRegion region : regions) {
 	    if (region.contains(x, y)) {
-		region.onClick(mission);
+		region.onClick(mission, state);
 		if (region.shouldRemove())
 		    toRemove.add(region);
 	    }

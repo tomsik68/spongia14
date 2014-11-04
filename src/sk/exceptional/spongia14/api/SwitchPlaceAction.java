@@ -10,7 +10,8 @@ public class SwitchPlaceAction extends ClickAction {
     }
 
     @Override
-    public void execute(Mission mission, ClickableRegion clicked) {
+    public void execute(Mission mission, MissionState state,
+	    ClickableRegion clicked) {
 	mission.switchPlace(newPlaceId);
     }
 
