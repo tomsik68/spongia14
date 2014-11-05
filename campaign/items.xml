@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<items>
+  <item>
+    <uniqueId>klucOdKancelarie_01</uniqueId>
+    <name>Kluc od Kancelarie</name>
+    <description>Tento kluc odomkne kancelariu.</description>
+    <inventoryIcon><!-- campaign.<id_kampane>. -->key</inventoryIcon>
+  </item>
+  <item>
+    <uniqueId>kufrikSVecami</uniqueId>
+    <name>Zasielka s vyplatou</name>
+    <description>Kufrik, ktory ti prisiel ako zasielka od bossa. Obsahuje vyplatu, fotku obete a list od bossa</description>
+  </item>
+  <item>
+    <uniqueId>stoEuro</uniqueId>
+    <name>100 euro</name>
+    <description>Cast tvojej vyplaty, ktoru si si vzal so sebou. Moze sa hodit, keby si nieco potreboval</description>
+  </item>
+</items>

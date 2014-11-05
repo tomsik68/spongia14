@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<campaign>
+  <name>Zakladna kampan</name>
+  <description>Zakladna kampan vytvorena na spongiu</description>
+  <!-- town, people, dialogs a mementos su standardizovane, lebo ich bude potrebovat kazda kampan -->
+  <start>
+    <dialog-start id="uvodialogSBossom" />
+    <dialog-start id="prislaZasielka" />
+    <give item="kufrikSVecami" />
+    <give item="stoEuro" />
+    <memento-add id="mmt_koho_zabit" />
+    <!-- hrac si teraz musi uvedomit, ze ma ist do restauracie JE, kde je uz pripravena obet -->
+  </start>
+  <win>
+    <dialog-start id="vyhralSi" />
+  </win>
+  <lost>
+    <dialog-start id="prehralSi" />
+  </lost>
+</campaign>

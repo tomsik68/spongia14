@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<town>
+  <place id="001">
+    <name>Stavba neznameho Armenca</name>
+    <!-- TODO: predvolene pozadie: rooms.{id}.bg -->
+    <music><!--campaign.<id_kampane>.-->music.rooms.001.mafia</music>
+    <objects>
+      <object>
+	<!-- Obrazok: campaign.<id_kampane>.items.klucOdKancelarie_01 -->
+	<resid><!--campaign.<id_kampane>. -->key</resid>
+	<x>50</x>
+	<y>60</y>
+	<actionset>
+	  <pickup item="klucOdKancelarie_01" />
+	  <remove />
+	  < />
+	</action>
+      </object>
+    </objects>
+    <people>
+    </people>
+  </place>
+</town>

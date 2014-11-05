@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<dialogs>
+  <dialog id="uvodDialogSBossom">
+    <actors>
+      <actor id="boss">
+	<name>BOSS</name>
+	<portrait><!-- campaign.<id_kampane>. -->portrait.boss</portrait>
+      </actor>
+      <actor id="murd">
+	<name>Michael Greenwich</name>
+	<portrait>portrait.greenwich</portrait>
+      </actor>
+    </actors>
+    <replicas>
+      <replica actor="boss">
+	Informacie o tvojom cieli by ti mali onedlho prist v balicku...
+      </replica>
+      <replica actor="murd">
+	Rozumiem, mame este nejake doplnujuce informacie, ktore nenajdem v zasielke?
+      </replica>
+    </replicas>
+  </dialog>
+  <dialog id="servirkaNepustiZaplat">
+    <actors>
+      <actor id="serv">
+	<name>Servirka</name>
+	<portrait>portrait.servirka<portrait>
+      </actor>
+      <actor id="murd">
+	<name>Michael Greenwich</name>
+	<portrait>portrait.greenwich</portrait>
+      </actor>
+    </actors>
+    <replicas>
+      <replica actor="murd">Dobry vecer, mam u Vas rezervaciu na meno Nathan Grayson. </replica>
+      <replica actor="serv">Dobry vecer, prepacte na toto meno nemam ziadnu rezervaciu.</replica>
+    </replicas>
+  </dialog>
+  <dialog id="servirkaNepustiZaplat">
+    <actors>
+      <actor id="serv">
+	<name>Servirka</name>
+	<portrait>portrait.servirka<portrait>
+      </actor>
+      <actor id="murd">
+	<name>Michael Greenwich</name>
+	<portrait>portrait.greenwich</portrait>
+      </actor>
+    </actors>
+    <replicas>
+      <replica actor="serv">Prepacte pane, moja chyba. Mozete si sadnut za Vas stol cislo 9.</replica>
+      <replica actor="murd">Dakujem. Myslim ze som zahliadol medzi casom svojho stareho priatela. Neviete mi prosim Vas povedat, kde ma stol pan Graham?</replica>
+      <replica actor="serv"></replica>
+    </replicas>
+  </dialog>
+
+</dialogs>

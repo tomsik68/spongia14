@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<people>
+  <person id="servirka"> <!-- ak ma IDcko, je dolezity -->
+    <name>Servirka</name>
+    <haen><!--TODO: resources pre animaciu postavicky --></haen>
+    <states>
+      <state prvy="true" id="uvodny">
+	<dialog id="servirkaNepustiZaplat" />
+	<actionsets>
+	  <needs-item item="stoEuro">
+	    <actions>
+	      <state-switch state="okPustimTa" />
+	      <dialog-start id="prepactePane" />
+	    </actions>
+	  </needs-item>
+	</actionsets>
+      </state>
+      <state id="okPustimTa">
+	<dialog id="servirkaPustiZaplatil" />
+      </state>
+    </states>
+  </person>
+</people>
