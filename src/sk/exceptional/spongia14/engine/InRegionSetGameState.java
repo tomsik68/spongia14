@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import sk.exceptional.spongia14.api.Item;
 import sk.exceptional.spongia14.api.Mission;
+import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
 import sk.exceptional.spongia14.api.SwitchPlaceAction;
 import sk.exceptional.spongia14.api.Town;
@@ -25,10 +26,11 @@ public class InRegionSetGameState extends BasicGameState implements
 	PlaceChangeListener {
     public static final int STATE_ID = 0;
     private Mission mission;
+    private MissionState missionState;
     private ClickableRegionSetContainer container;
     private final Resources resources = new Resources();
     private ClickableRegionSetFactory crsFactory;
-    private ClickableRegionSetContainer newContainer;
+    //private ClickableRegionSetContainer newContainer;
 
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
@@ -43,10 +45,9 @@ public class InRegionSetGameState extends BasicGameState implements
 	}
 	crsFactory = new ClickableRegionSetFactory(resources);
 	mission = prepareExampleMission();
-	mission.addPlaceChangeListener(this);
-	container = new ClickableRegionSetContainer(mission,
-		crsFactory.createCRS(mission, mission.getTown().getMap()));
-	container.init(resources);
+	missionState = new MissionState(mission);
+	missionState.addPlaceChangeListener(this);
+	placeSwitched(mission.getTown().getMap());
     }
 
     private Mission prepareExampleMission() {
@@ -54,8 +55,10 @@ public class InRegionSetGameState extends BasicGameState implements
 	Town town = new Town("ivan.homola");
 
 	Place place = new Place("ivan.homola", "example");
-	ItemContainer ic = new ItemContainer(new Item("ivan-item", "key",
-		"Ivan Homola", "Najvacsi pan na svete", "ivanItem"), 50, 50);
+	Item ivanItem = new Item("ivan-item", "key", "Ivan Homola",
+		"Najvacsi pan na svete", "ivanItem");
+	mission.registerItem(ivanItem);
+	ItemContainer ic = new ItemContainer(ivanItem, 50, 50);
 	ic.addActions(new SwitchPlaceAction("ivan2"));
 	place.addItem(ic);
 	town.addPlace(place);
@@ -76,10 +79,10 @@ public class InRegionSetGameState extends BasicGameState implements
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta)
 	    throws SlickException {
-	if (newContainer != null) {
+	/*if (newContainer != null) {
 	    container = newContainer;
 	    newContainer = null;
-	}
+	}*/
 	container.update(gc.getInput());
     }
 
@@ -90,9 +93,9 @@ public class InRegionSetGameState extends BasicGameState implements
 
     @Override
     public void placeSwitched(Place newPlace) {
-	newContainer = new ClickableRegionSetContainer(mission,
+	container = new ClickableRegionSetContainer(mission, missionState,
 		crsFactory.createCRS(mission, newPlace));
-	newContainer.init(resources);
+	container.init(resources);
     }
 
 }

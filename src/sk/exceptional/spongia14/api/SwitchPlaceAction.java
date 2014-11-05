@@ -1,6 +1,5 @@
 package sk.exceptional.spongia14.api;
 
-
 public class SwitchPlaceAction extends Action {
     private final String newPlaceId;
 
@@ -10,7 +9,7 @@ public class SwitchPlaceAction extends Action {
 
     @Override
     public void execute(Mission mission, MissionState state) {
-	mission.switchPlace(newPlaceId);
+	state.switchPlace(newPlaceId);
     }
 
 }

@@ -15,10 +15,11 @@ public class ClickableRegionSetContainer {
     private final Mission mission;
     private final MissionState missionState;
 
-    public ClickableRegionSetContainer(Mission mission, ClickableRegionSet set) {
+    public ClickableRegionSetContainer(Mission mission,
+	    MissionState missionState, ClickableRegionSet set) {
 	regionSet = set;
 	this.mission = mission;
-	missionState = new MissionState();
+	this.missionState = missionState;
     }
 
     public void init(Resources resources) {

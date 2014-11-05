@@ -1,11 +1,11 @@
 package sk.exceptional.spongia14.api;
 
-import java.util.ArrayList;
-
-import sk.exceptional.spongia14.pnc.PlaceChangeListener;
+import javax.naming.NameAlreadyBoundException;
 
 public final class Mission {
-    private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
+    private final Registry<Dialog> dialogs = new Registry<Dialog>();
+    private final Registry<Item> items = new Registry<Item>();
+
     private Town town;
 
     public Mission() {
@@ -19,18 +19,25 @@ public final class Mission {
 	this.town = town;
     }
 
-    public final void addPlaceChangeListener(PlaceChangeListener listener) {
-	placeChangeListeners.add(listener);
-    }
-
-    final void switchPlace(String newPlaceId) {
-	Place newPlace = town.getPlace(newPlaceId);
-	for (PlaceChangeListener listener : placeChangeListeners) {
-	    listener.placeSwitched(newPlace);
-	}
+    public Dialog getDialog(String id) {
+	return dialogs.get(id);
     }
 
     public Item getItem(String itemId) {
-	return null;
+	return items.get(itemId);
+    }
+
+    public Place getPlace(String placeId) {
+	return town.get(placeId);
+    }
+
+    // TODO: vymazat
+    public void registerItem(Item ivanItem) {
+	try {
+	    items.register(ivanItem.getUniqueID(), ivanItem);
+	} catch (NameAlreadyBoundException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 }

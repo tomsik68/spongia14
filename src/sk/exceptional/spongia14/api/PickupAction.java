@@ -11,7 +11,7 @@ public class PickupAction extends Action {
     @Override
     public void execute(Mission mission, MissionState missionState) {
 	Item item = mission.getItem(itemId);
-	missionState.putItemInInventory(item);
+	missionState.getInventory().addItem(item);
     }
 
 }

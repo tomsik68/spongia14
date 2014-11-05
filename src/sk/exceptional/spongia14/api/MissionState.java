@@ -1,21 +1,35 @@
 package sk.exceptional.spongia14.api;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
- 
+import sk.exceptional.spongia14.pnc.PlaceChangeListener;
+
 public class MissionState {
-    private List<Item> inventory = new ArrayList<Item>();
+    private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
+    private final Inventory inventory;
+    private final Mission mission;
 
-    public MissionState() {
+    public MissionState(Mission mission) {
+	inventory = new Inventory();
+	this.mission = mission;
     }
 
-    public final List<Item> getInventory() {
-	return Collections.unmodifiableList(inventory);
+    public final Inventory getInventory() {
+	return inventory;
     }
 
-    public void putItemInInventory(Item item) {
-	inventory.add(item);
+    public void triggerDialog(Dialog dialog) {
+	// TODO: zapnut dialog
+    }
+
+    final void switchPlace(String newPlaceId) {
+	Place newPlace = mission.getPlace(newPlaceId);
+	for (PlaceChangeListener listener : placeChangeListeners) {
+	    listener.placeSwitched(newPlace);
+	}
+    }
+
+    public final void addPlaceChangeListener(PlaceChangeListener listener) {
+	placeChangeListeners.add(listener);
     }
 }
