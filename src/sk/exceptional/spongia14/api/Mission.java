@@ -5,6 +5,7 @@ import javax.naming.NameAlreadyBoundException;
 public final class Mission {
     private final Registry<Dialog> dialogs = new Registry<Dialog>();
     private final Registry<Item> items = new Registry<Item>();
+    private final Registry<Person> people = new Registry<Person>();
 
     private Town town;
 
