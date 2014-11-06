@@ -1,5 +1,6 @@
 package sk.exceptional.spongia14.engine;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,6 +16,7 @@ public class DialogWizard {
     private Replica currentReplica;
     private int currentReplicaId;
     private Resources resourcesInstance;
+    private Animation clickEnter;
     private Image bubble;
     private boolean done;
     private static boolean wasEnter = false;
@@ -27,6 +29,9 @@ public class DialogWizard {
     public void init(Resources res) {
 	resourcesInstance = res;
 	bubble = res.getImage("gui.dlg_bubble");
+	clickEnter = new Animation(new Image[] {
+		res.getImage("gui.clickEnter1"),
+		res.getImage("gui.clickEnter2") }, 360);
 	switchReplica(currentReplicaId);
     }
 
@@ -45,6 +50,7 @@ public class DialogWizard {
 	gfx.fillRoundRect(-50, -50, portrait.getWidth() + 70,
 		portrait.getHeight() + 70, 35);
 	gfx.drawImage(portrait, 0, 0);
+	gfx.drawAnimation(clickEnter, 400, 500);
     }
 
     public void update(GameContainer gc) {

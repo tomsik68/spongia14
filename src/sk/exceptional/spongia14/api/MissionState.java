@@ -8,6 +8,7 @@ import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 public class MissionState {
     private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
     private ArrayList<DialogTriggerListener> dialogListeners = new ArrayList<DialogTriggerListener>();
+    private ArrayList<MementoAddListener> mementoListeners = new ArrayList<MementoAddListener>();
     private final Inventory inventory;
     private final Mission mission;
     private final HashSet<String> allowedPlaces;
@@ -63,5 +64,15 @@ public class MissionState {
 
     public final void allowEntrance(String placeID) {
 	allowedPlaces.add(placeID);
+    }
+
+    public final void addMemento(String mementoRes) {
+	for (MementoAddListener listener : mementoListeners) {
+	    listener.onMementoAdded(mementoRes);
+	}
+    }
+
+    public void addMementoListener(MementoAddListener listener) {
+	mementoListeners.add(listener);
     }
 }

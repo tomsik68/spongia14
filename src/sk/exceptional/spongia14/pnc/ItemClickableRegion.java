@@ -20,7 +20,8 @@ public class ItemClickableRegion extends RectangularClickableRegion {
 
     @Override
     public void render(Graphics gfx) {
-	gfx.drawImage(image, x, y);
+	if (!item.isVirtual())
+	    gfx.drawImage(image, x, y);
     }
 
     public Item getItem() {

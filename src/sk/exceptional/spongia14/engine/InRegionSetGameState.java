@@ -19,6 +19,7 @@ import sk.exceptional.spongia14.api.DialogStartAction;
 import sk.exceptional.spongia14.api.DialogTriggerListener;
 import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Item;
+import sk.exceptional.spongia14.api.MementoAddListener;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
@@ -32,7 +33,7 @@ import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 import sk.tomsik68.resourceslib.Resources;
 
 public class InRegionSetGameState extends BasicGameState implements
-	PlaceChangeListener, DialogTriggerListener {
+	PlaceChangeListener, DialogTriggerListener, MementoAddListener {
     public static final int STATE_ID = 0;
     private Mission mission;
     private MissionState missionState;
@@ -43,6 +44,7 @@ public class InRegionSetGameState extends BasicGameState implements
     private Place newPlace;
     private DialogWizard dialogWizard;
     private boolean inDialog = false;
+    private boolean inMemento = false;
 
     // private ClickableRegionSetContainer newContainer;
 
@@ -59,78 +61,20 @@ public class InRegionSetGameState extends BasicGameState implements
 	}
 	crsFactory = new ClickableRegionSetFactory(resources);
 	try {
-	    mission = prepareExampleMission();
+	    mission = SpongiaCampaign.createMission();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    JOptionPane.showMessageDialog(null,
 		    "Kedze sme vynimocni, zasluzite si od nas vynimku ;)");
 	}
 	missionState = new MissionState(mission);
-	/**/
-	missionState.allowEntrance("bytVraha");
-	/**/
 	missionState.addPlaceChangeListener(this);
 	missionState.addDialogListener(this);
-    }
+	missionState.addMementoListener(this);
+	SpongiaCampaign.prepareState(missionState);
+	Place beginning = mission.getPlace(SpongiaCampaign.getBeginningPlace());
+	placeSwitched(beginning);
 
-    private Mission prepareExampleMission() throws Exception {
-	Mission mission = new Mission();
-	Town town = new Town("domVraha");
-
-	ItemContainer ic;
-	Entrance e;
-
-	Place domVraha = new Place("domVraha", "buildings.in.domVraha");
-	domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
-	domVraha.addEntrance(new Entrance("planMesta", 300, 270, 200, 180));
-
-	Item zasielka = new Item("zasielka1", "Vyplata", "Vyplata od bossa",
-		"items.kufrik");
-	domVraha.addItem(ic = new ItemContainer(zasielka, 35, 450));
-	ic.addActions(new RemoveAction());
-	town.addPlace(domVraha);
-
-	Place bytVraha = new Place("bytVraha", "buildings.in.bytVraha");
-	e = new Entrance("domVraha", 657, 125, 100, 400);
-	e.cantEnterText = "Mal by som najprv zodvihnut telefonat od bossa, inak bude zasa nastvany...";
-	bytVraha.addEntrance(e);
-
-	Item mobil = new Item("mobilVraha", "Tvoj mobil.",
-		"Ziaden sitny iPhone", "items.mobil");
-	bytVraha.addItem(ic = new ItemContainer(mobil, 300, 300));
-	ic.addActions(new DialogStartAction("dialogSBossom"));
-	ic.addActions(new AllowAccessAction("domVraha"));
-	ic.addActions(new RemoveAction());
-
-	town.addPlace(bytVraha);
-
-	mission.setTown(town);
-
-	Dialog dialog = new Dialog("dialogSBossom");
-
-	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
-		"portrait.greenwich"));
-	dialog.addActor(new DialogActor("boss", "TEN boss", "portrait.boss"));
-	dialog.addReplica(new Replica("Halo? Michael Greenwich pri telefone.",
-		"murd"));
-	dialog.addReplica(new Replica(
-		"Informacie o tvojom cieli by ti mali onedlho prist v balicku ktory obsahuje\n aj tvoju prvu polovicu vyplaty.Druhu ako obvykle dostanes po splneni prace.",
-		"boss"));
-	dialog.addReplica(new Replica(
-		"Rozumiem, mame este nejake doplnujuce info ktore nenajdem v zasielke?",
-		"murd"));
-	dialog.addReplica(new Replica(
-		"Ano,tento ciel je velmi slizky a uz dlho sa ho snazime zabit.\nAk sa ti to nepodari bude trvat velmi dlho kym ho zas najdeme tak ma nesklam.",
-		"boss"));
-	dialog.addReplica(new Replica("Ozvem sa ked to bude hotove.", "murd"));
-	dialog.addReplica(new Replica(
-		"Este jedna vec,jedina fotka ciela ktoru mame je velmi rozmazana,\n takze sa najprv dobre uisti ze je to tvoj ciel.",
-		"boss"));
-	mission.registerDialog(dialog);
-	// misia zacina u vraha v byte
-	placeSwitched(bytVraha);
-
-	return mission;
     }
 
     @Override
@@ -194,6 +138,10 @@ public class InRegionSetGameState extends BasicGameState implements
 	inDialog = true;
 	dialogWizard = new DialogWizard(dialog);
 	dialogWizard.init(resources);
+    }
+
+    @Override
+    public void onMementoAdded(String mementoRes) {
     }
 
 }
