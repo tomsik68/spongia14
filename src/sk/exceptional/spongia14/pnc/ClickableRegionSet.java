@@ -37,8 +37,12 @@ public class ClickableRegionSet {
 	toRemove.clear();
     }
 
-    public void renderRegions(Graphics gfx) {
+    public void renderRegions(Graphics gfx, int mouseX, int mouseY) {
 	for (ClickableRegion region : regions) {
+	    if (region.contains(mouseX, mouseY)) {
+		// TODO: dat najavo, ze mozem s tym nieco robit
+		region.getAvailableActions();
+	    }
 	    region.render(gfx);
 	}
     }

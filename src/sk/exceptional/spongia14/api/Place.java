@@ -3,6 +3,7 @@ package sk.exceptional.spongia14.api;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PersonContainer;
@@ -11,6 +12,7 @@ public class Place {
     private final String id, backgroundImage;
     private ArrayList<ItemContainer> items = new ArrayList<ItemContainer>();
     private ArrayList<PersonContainer> people = new ArrayList<PersonContainer>();
+    private ArrayList<Entrance> entrances = new ArrayList<Entrance>();
 
     public Place(String id, String bgImage) {
 	this.id = id;
@@ -39,5 +41,13 @@ public class Place {
 
     public String getBackgroundImage() {
 	return backgroundImage;
+    }
+
+    public List<Entrance> getEntrances() {
+	return entrances;
+    }
+
+    public final void addEntrance(Entrance entrance) {
+	entrances.add(entrance);
     }
 }

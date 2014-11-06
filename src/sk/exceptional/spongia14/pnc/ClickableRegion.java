@@ -31,4 +31,8 @@ public abstract class ClickableRegion {
     public void render(Graphics gfx) {
 
     }
+
+    public String[] getAvailableActions() {
+	return new String[] {};
+    }
 }

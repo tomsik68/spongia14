@@ -7,8 +7,9 @@ public class MissionLoader {
 
     }
 
-    public Mission loadMission(Document doc) {
-
+    public Mission loadMission(Document campaignXML, Document peopleXML,
+	    Document townXML, Document mementosXML, Document dialogsXML,
+	    Document itemsXML) {
 	return null;
     }
 }

@@ -4,21 +4,22 @@ import java.io.File;
 
 import javax.swing.JOptionPane;
 
+import org.lwjgl.opengl.Display;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Item;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
-import sk.exceptional.spongia14.api.SwitchPlaceAction;
 import sk.exceptional.spongia14.api.Town;
 import sk.exceptional.spongia14.pnc.ClickableRegionSetContainer;
 import sk.exceptional.spongia14.pnc.ClickableRegionSetFactory;
-import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 import sk.tomsik68.resourceslib.Resources;
 
@@ -30,7 +31,10 @@ public class InRegionSetGameState extends BasicGameState implements
     private ClickableRegionSetContainer container;
     private final Resources resources = new Resources();
     private ClickableRegionSetFactory crsFactory;
-    //private ClickableRegionSetContainer newContainer;
+    private int fadeTimer = 0;
+    private Place newPlace;
+
+    // private ClickableRegionSetContainer newContainer;
 
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
@@ -52,19 +56,15 @@ public class InRegionSetGameState extends BasicGameState implements
 
     private Mission prepareExampleMission() {
 	Mission mission = new Mission();
-	Town town = new Town("ivan.homola");
+	Town town = new Town("domVraha");
 
-	Place place = new Place("ivan.homola", "example");
-	Item ivanItem = new Item("ivan-item", "key", "Ivan Homola",
-		"Najvacsi pan na svete", "ivanItem");
-	mission.registerItem(ivanItem);
-	ItemContainer ic = new ItemContainer(ivanItem, 50, 50);
-	ic.addActions(new SwitchPlaceAction("ivan2"));
-	place.addItem(ic);
-	town.addPlace(place);
+	Place domVraha = new Place("domVraha", "buildings.in.domVraha");
+	domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
+	town.addPlace(domVraha);
 
-	Place place2 = new Place("ivan2", "example2");
-	town.addPlace(place2);
+	Place bytVraha = new Place("bytVraha", "buildings.in.bytVraha");
+	bytVraha.addEntrance(new Entrance("domVraha", 657, 125, 100, 300));
+	town.addPlace(bytVraha);
 
 	mission.setTown(town);
 	return mission;
@@ -73,17 +73,34 @@ public class InRegionSetGameState extends BasicGameState implements
     @Override
     public void render(GameContainer gc, StateBasedGame game, Graphics gfx)
 	    throws SlickException {
-	container.render(gfx);
+	if (container != null)
+	    container.render(gfx);
+	if (fadeTimer > 0) {
+	    gfx.setColor(new Color(0, 0, 0, 255 - fadeTimer / 2));
+	    gfx.fillRect(0, 0, gc.getWidth(), gc.getHeight());
+	}
+	Display.sync(60);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame game, int delta)
 	    throws SlickException {
-	/*if (newContainer != null) {
-	    container = newContainer;
-	    newContainer = null;
-	}*/
-	container.update(gc.getInput());
+	/*
+	 * if (newContainer != null) { container = newContainer; newContainer =
+	 * null; }
+	 */
+	// pri prechode nefunguje nic
+	if (fadeTimer == 0) {
+	    container.update(gc.getInput());
+	} else {
+	    --fadeTimer;
+	    if (fadeTimer == 0) {
+		container = new ClickableRegionSetContainer(mission,
+			missionState, crsFactory.createCRS(mission, newPlace));
+		container.init(resources);
+	    }
+	}
+
     }
 
     @Override
@@ -93,9 +110,8 @@ public class InRegionSetGameState extends BasicGameState implements
 
     @Override
     public void placeSwitched(Place newPlace) {
-	container = new ClickableRegionSetContainer(mission, missionState,
-		crsFactory.createCRS(mission, newPlace));
-	container.init(resources);
+	fadeTimer = 60 * 2;
+	this.newPlace = newPlace;
     }
 
 }
