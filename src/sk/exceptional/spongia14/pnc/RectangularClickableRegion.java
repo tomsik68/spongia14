@@ -21,9 +21,4 @@ public class RectangularClickableRegion extends ClickableRegion {
 	this.shouldRemove = true;
     }
 
-    @Override
-    public boolean shouldRemove() {
-	return shouldRemove;
-    }
-
 }

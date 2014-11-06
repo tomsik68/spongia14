@@ -41,4 +41,12 @@ public final class Mission {
 	    e.printStackTrace();
 	}
     }
+
+    public void registerDialog(Dialog dialog) {
+	try {
+	    dialogs.register(dialog.getId(), dialog);
+	} catch (NameAlreadyBoundException e) {
+	    e.printStackTrace();
+	}
+    }
 }

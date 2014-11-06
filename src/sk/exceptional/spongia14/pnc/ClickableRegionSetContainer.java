@@ -37,7 +37,6 @@ public class ClickableRegionSetContainer {
 	mouseX = input.getMouseX();
 	mouseY = input.getMouseY();
 	if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && !wasPressed) {
-
 	    regionSet.onClick(mission, missionState, mouseX, mouseY);
 	    wasPressed = true;
 	} else

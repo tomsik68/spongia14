@@ -3,6 +3,7 @@ package sk.exceptional.spongia14.pnc;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import sk.exceptional.spongia14.api.Mission;
@@ -39,11 +40,15 @@ public class ClickableRegionSet {
 
     public void renderRegions(Graphics gfx, int mouseX, int mouseY) {
 	for (ClickableRegion region : regions) {
-	    if (region.contains(mouseX, mouseY)) {
-		// TODO: dat najavo, ze mozem s tym nieco robit
-		region.getAvailableActions();
-	    }
 	    region.render(gfx);
+	    if (region.contains(mouseX, mouseY)) {
+		if (region instanceof RectangularClickableRegion) {
+		    RectangularClickableRegion rect = (RectangularClickableRegion) region;
+		    // TODO: odstranit rect, treba lepsi sposob
+		    gfx.setColor(new Color(0, 0, 0, 100));
+		    gfx.fillRoundRect(rect.x, rect.y, rect.w, rect.h, 15);
+		}
+	    }
 	}
     }
 }

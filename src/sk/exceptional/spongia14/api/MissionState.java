@@ -6,6 +6,7 @@ import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 
 public class MissionState {
     private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
+    private ArrayList<DialogTriggerListener> dialogListeners = new ArrayList<DialogTriggerListener>();
     private final Inventory inventory;
     private final Mission mission;
 
@@ -18,8 +19,11 @@ public class MissionState {
 	return inventory;
     }
 
-    public void triggerDialog(Dialog dialog) {
-	// TODO: zapnut dialog
+    public void triggerDialog(String dialogId) {
+	Dialog dialog = mission.getDialog(dialogId);
+	for (DialogTriggerListener listener : dialogListeners) {
+	    listener.onTriggerDialog(dialog);
+	}
     }
 
     final void switchPlace(String newPlaceId) {
@@ -31,5 +35,9 @@ public class MissionState {
 
     public final void addPlaceChangeListener(PlaceChangeListener listener) {
 	placeChangeListeners.add(listener);
+    }
+
+    public final void addDialogListener(DialogTriggerListener listener) {
+	dialogListeners.add(listener);
     }
 }

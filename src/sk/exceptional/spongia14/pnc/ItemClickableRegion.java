@@ -11,7 +11,8 @@ public class ItemClickableRegion extends RectangularClickableRegion {
     private final Item item;
 
     public ItemClickableRegion(ItemContainer itemContainer, Image image) {
-	super(itemContainer.getX(), itemContainer.getY(), 64, 64);
+	super(itemContainer.getX(), itemContainer.getY(), image.getWidth(),
+		image.getHeight());
 	this.item = itemContainer.getItem();
 	actions.addAll(itemContainer.getActions());
 	this.image = image;
