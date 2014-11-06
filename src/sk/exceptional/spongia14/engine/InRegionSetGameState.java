@@ -12,6 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import sk.exceptional.spongia14.api.AllowAccessAction;
 import sk.exceptional.spongia14.api.Dialog;
 import sk.exceptional.spongia14.api.DialogActor;
 import sk.exceptional.spongia14.api.DialogStartAction;
@@ -65,6 +66,9 @@ public class InRegionSetGameState extends BasicGameState implements
 		    "Kedze sme vynimocni, zasluzite si od nas vynimku ;)");
 	}
 	missionState = new MissionState(mission);
+	/**/
+	missionState.allowEntrance("bytVraha");
+	/**/
 	missionState.addPlaceChangeListener(this);
 	missionState.addDialogListener(this);
     }
@@ -74,9 +78,11 @@ public class InRegionSetGameState extends BasicGameState implements
 	Town town = new Town("domVraha");
 
 	ItemContainer ic;
+	Entrance e;
 
 	Place domVraha = new Place("domVraha", "buildings.in.domVraha");
 	domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
+	domVraha.addEntrance(new Entrance("planMesta", 300, 270, 200, 180));
 
 	Item zasielka = new Item("zasielka1", "Vyplata", "Vyplata od bossa",
 		"items.kufrik");
@@ -85,12 +91,15 @@ public class InRegionSetGameState extends BasicGameState implements
 	town.addPlace(domVraha);
 
 	Place bytVraha = new Place("bytVraha", "buildings.in.bytVraha");
-	bytVraha.addEntrance(new Entrance("domVraha", 657, 125, 100, 400));
+	e = new Entrance("domVraha", 657, 125, 100, 400);
+	e.cantEnterText = "Mal by som najprv zodvihnut telefonat od bossa, inak bude zasa nastvany...";
+	bytVraha.addEntrance(e);
 
 	Item mobil = new Item("mobilVraha", "Tvoj mobil.",
 		"Ziaden sitny iPhone", "items.mobil");
 	bytVraha.addItem(ic = new ItemContainer(mobil, 300, 300));
 	ic.addActions(new DialogStartAction("dialogSBossom"));
+	ic.addActions(new AllowAccessAction("domVraha"));
 	ic.addActions(new RemoveAction());
 
 	town.addPlace(bytVraha);
@@ -120,6 +129,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	mission.registerDialog(dialog);
 	// misia zacina u vraha v byte
 	placeSwitched(bytVraha);
+
 	return mission;
     }
 

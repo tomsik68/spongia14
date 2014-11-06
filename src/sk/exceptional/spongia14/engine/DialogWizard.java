@@ -1,5 +1,6 @@
 package sk.exceptional.spongia14.engine;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -38,12 +39,16 @@ public class DialogWizard {
 	gfx.drawImage(bubble, 0, 0);
 	Image portrait = resourcesInstance.getImage(dialog.getActor(
 		currentReplica.getActorId()).getPortraitResource());
+	gfx.setColor(Color.black);
 	gfx.drawString(currentReplica.getText(), 50, bubble.getHeight() / 2);
+	gfx.setColor(new Color(0, 0, 0, 230));
+	gfx.fillRoundRect(-50, -50, portrait.getWidth() + 70,
+		portrait.getHeight() + 70, 35);
 	gfx.drawImage(portrait, 0, 0);
     }
 
     public void update(GameContainer gc) {
-	if (gc.getInput().isKeyDown(Input.KEY_ENTER) && !wasEnter) {
+	if ((gc.getInput().isKeyDown(Input.KEY_ENTER)) && !wasEnter) {
 	    if (currentReplicaId == dialog.getReplicaCount() - 1) {
 		done = true;
 	    } else

@@ -13,6 +13,7 @@ public class ClickableRegionSet {
     private final String backgroundResource;
     private final ArrayList<ClickableRegion> regions = new ArrayList<ClickableRegion>();
     private HashSet<ClickableRegion> toRemove = new HashSet<ClickableRegion>();
+    private static int r;
 
     public ClickableRegionSet(String background) {
 	backgroundResource = background;
@@ -44,11 +45,24 @@ public class ClickableRegionSet {
 	    if (region.contains(mouseX, mouseY)) {
 		if (region instanceof RectangularClickableRegion) {
 		    RectangularClickableRegion rect = (RectangularClickableRegion) region;
-		    // TODO: odstranit rect, treba lepsi sposob
-		    gfx.setColor(new Color(0, 0, 0, 100));
-		    gfx.fillRoundRect(rect.x, rect.y, rect.w, rect.h, 15);
+		    int x = rect.x;
+		    int y = rect.y;
+		    int w = Math.min(rect.w, rect.h);
+		    int h = w;
+		    if (rect.w > rect.h) {
+			x += rect.w / 2 - w / 2;
+		    } else if (rect.h > rect.w) {
+			y += rect.h / 2 - h / 2;
+		    }
+		    gfx.setColor(Color.magenta);
+		    gfx.setLineWidth(3);
+		    gfx.drawOval(x - r / 2, y - r / 2, w + r, h + r);
+		    gfx.setLineWidth(1);
 		}
 	    }
 	}
+	++r;
+	if (r == 50)
+	    r = 0;
     }
 }
