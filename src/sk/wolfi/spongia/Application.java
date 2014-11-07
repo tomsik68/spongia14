@@ -20,10 +20,10 @@ public class Application extends BasicGame {
 	
 	@Override
 	public void init(GameContainer container) throws SlickException {
-		body = new Body(100, 100, 50, 50); // x, y, width, height
+		body = new Body(100, 100, 50, 50); 
 		
-		arm = new Extremity(50, 20); // width, height
-		arm.setJoint(50, 10); // xOffset, yOffset
+		arm = new Extremity(50, 20); 
+		arm.setJoint(50, 10);
 
 		body.attach(arm, 0, 20, "leftArm");
 		body.attach(arm, 50, 20, "rightArm");
@@ -70,11 +70,8 @@ public class Application extends BasicGame {
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		
 		body.draw(g);
 		g.drawString(new String("/\\, \\/, <-, ->, L, R"), 20, 30);
-		
-	
 	}
 
 	 public static void main(String[] args) {
