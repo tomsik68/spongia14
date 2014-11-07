@@ -8,6 +8,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -45,6 +46,7 @@ public class InRegionSetGameState extends BasicGameState implements
     private DialogWizard dialogWizard;
     private boolean inDialog = false;
     private boolean inMemento = false;
+    private MementoGui mementoGui;
 
     // private ClickableRegionSetContainer newContainer;
 
@@ -74,7 +76,8 @@ public class InRegionSetGameState extends BasicGameState implements
 	SpongiaCampaign.prepareState(missionState);
 	Place beginning = mission.getPlace(SpongiaCampaign.getBeginningPlace());
 	placeSwitched(beginning);
-
+	mementoGui = new MementoGui(resources.getImage("gui.memento"),
+		resources);
     }
 
     @Override
@@ -87,7 +90,11 @@ public class InRegionSetGameState extends BasicGameState implements
 		gfx.setColor(new Color(0, 0, 0, 255 - fadeTimer / 2));
 		gfx.fillRect(0, 0, gc.getWidth(), gc.getHeight());
 	    }
-	} else {
+	}
+	if (inMemento) {
+	    mementoGui.render(gfx);
+	}
+	if (inDialog) {
 	    dialogWizard.render(gfx);
 	}
 	Display.sync(60);
@@ -113,6 +120,16 @@ public class InRegionSetGameState extends BasicGameState implements
 		    container.init(resources);
 		}
 	    }
+	    if (gc.getInput().isKeyPressed(Input.KEY_M)) {
+		mementoGui.show();
+		inMemento = true;
+		System.out.println("Janeviemus");
+	    }
+	} else if (inMemento) {
+	    if (mementoGui.isDone()) {
+		inMemento = false;
+	    }
+	    mementoGui.update(gc);
 	} else {
 	    if (dialogWizard.isDone()) {
 		inDialog = false;
@@ -142,6 +159,11 @@ public class InRegionSetGameState extends BasicGameState implements
 
     @Override
     public void onMementoAdded(String mementoRes) {
+	/*
+	 * inMemento = true;
+	 * mementoGui.showMemento(resources.getImage(mementoRes));
+	 */
+	mementoGui.addMemento(mementoRes);
     }
 
 }

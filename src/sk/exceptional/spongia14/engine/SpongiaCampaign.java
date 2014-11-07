@@ -2,6 +2,7 @@ package sk.exceptional.spongia14.engine;
 
 import javax.naming.NameAlreadyBoundException;
 
+import sk.exceptional.spongia14.api.AddMementoAction;
 import sk.exceptional.spongia14.api.AllowAccessAction;
 import sk.exceptional.spongia14.api.Dialog;
 import sk.exceptional.spongia14.api.DialogActor;
@@ -80,6 +81,7 @@ public class SpongiaCampaign {
 	    ic.addActions(new AllowAccessAction("domVraha"));
 	    // a mobil odtial zmizne
 	    ic.addActions(new RemoveAction());
+	    ic.addActions(new AddMementoAction("memento.memento1"));
 
 	    town.addPlace(bytVraha);
 
