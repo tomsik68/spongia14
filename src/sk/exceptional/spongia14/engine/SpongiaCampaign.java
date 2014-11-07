@@ -47,7 +47,9 @@ public class SpongiaCampaign {
 	    // entrance su dvere alebo vychod, ktory zmeni miesto
 	    // entrancy sa pridavaju do Place
 	    domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
-	    domVraha.addEntrance(new Entrance("planMesta", 300, 270, 200, 180));
+	    domVraha.addEntrance(e = new Entrance("planMesta", 300, 270, 200,
+		    180));
+	    e.cantEnterText = "Mal by som si najprv vziat svoju zasielku.\nNechcem predsa, aby niekto iny dostal moje prachy.";
 	    // Item ma unikatne ID, meno a popis pre inventory a resource
 	    // background
 	    Item zasielka = new Item("zasielka1", "Vyplata",
@@ -59,8 +61,8 @@ public class SpongiaCampaign {
 	    // ItemContaineru mozem pridavat akcie - ako RemoveAction,
 	    // DialogStartAction, SwitchPlaceAction, GiveItemAction,
 	    // TakeItemAction
-	    ic.addActions(new RemoveAction());
-	    ic.addActions(new AllowAccessAction("planMesta"));
+	    ic.addAction(new RemoveAction());
+	    ic.addAction(new AllowAccessAction("planMesta"));
 	    // place treba po vsetkych upravach pridat do mesta
 	    town.addPlace(domVraha);
 
@@ -76,12 +78,12 @@ public class SpongiaCampaign {
 	    mission.registerItem(mobil);
 	    bytVraha.addItem(ic = new ItemContainer(mobil, 300, 300));
 	    // ked vezmem mobil, zacne sa rozhovor s bossom
-	    ic.addActions(new DialogStartAction("dialogSBossom"));
+	    ic.addAction(new DialogStartAction("dialogSBossom"));
 	    // odomkne sa place s ID domVraha
-	    ic.addActions(new AllowAccessAction("domVraha"));
+	    ic.addAction(new AllowAccessAction("domVraha"));
 	    // a mobil odtial zmizne
-	    ic.addActions(new RemoveAction());
-	    ic.addActions(new AddMementoAction("memento.memento1"));
+	    ic.addAction(new RemoveAction());
+	    ic.addAction(new AddMementoAction("memento.memento1"));
 
 	    town.addPlace(bytVraha);
 

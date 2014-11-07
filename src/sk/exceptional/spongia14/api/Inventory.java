@@ -26,4 +26,13 @@ public class Inventory {
     public boolean hasItem(Item item) {
 	return items.contains(item);
     }
+
+    public boolean hasItem(String itemId) {
+	for (Item item : items) {
+	    if (item.getUniqueID().equalsIgnoreCase(itemId)) {
+		return true;
+	    }
+	}
+	return false;
+    }
 }

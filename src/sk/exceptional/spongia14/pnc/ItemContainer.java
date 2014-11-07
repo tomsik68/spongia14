@@ -6,10 +6,11 @@ import java.util.Collections;
 import java.util.List;
 
 import sk.exceptional.spongia14.api.Action;
+import sk.exceptional.spongia14.api.ActionSet;
 import sk.exceptional.spongia14.api.Item;
 
 public class ItemContainer {
-    private final List<Action> clickActions;
+    private final ActionSet actionSet;
     private final Item item;
     private final int x, y;
 
@@ -17,7 +18,7 @@ public class ItemContainer {
 	this.item = item;
 	this.x = x;
 	this.y = y;
-	clickActions = new ArrayList<Action>();
+	actionSet = new ActionSet();
     }
 
     public int getX() {
@@ -32,12 +33,12 @@ public class ItemContainer {
 	return item;
     }
 
-    public final void addActions(Action action) {
-	clickActions.add(action);
+    public final void addAction(Action action) {
+	actionSet.addAction(action);
     }
 
-    final Collection<Action> getActions() {
-	return Collections.unmodifiableList(clickActions);
+    final ActionSet getActionSet() {
+	return actionSet;
     }
 
 }

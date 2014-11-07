@@ -1,18 +1,16 @@
 package sk.exceptional.spongia14.pnc;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Graphics;
 
 import sk.exceptional.spongia14.api.Action;
+import sk.exceptional.spongia14.api.ActionSet;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
-import sk.exceptional.spongia14.api.RemoveAction;
 
 public abstract class ClickableRegion {
-    protected final ArrayList<Action> actions = new ArrayList<Action>();
     private boolean remove = false;
     private String mouseTooltip;
+    protected Action action;
 
     public ClickableRegion() {
     }
@@ -23,18 +21,12 @@ public abstract class ClickableRegion {
 	return remove;
     }
 
-    public void addAction(Action action) {
-	actions.add(action);
-    }
-
     void onClick(Mission mission, MissionState state) {
-	for (Action action : actions) {
-	    action.execute(mission, state);
-	    if (action instanceof RemoveAction) {
-		remove = true;
-	    }
+	action.execute(mission, state);
+	if (action instanceof ActionSet) {
+	    ActionSet set = (ActionSet) action;
+	    remove |= set.isRemove();
 	}
-
     }
 
     public void render(Graphics gfx) {
@@ -51,5 +43,9 @@ public abstract class ClickableRegion {
 
     public void setMouseTooltip(String mouseTooltip) {
 	this.mouseTooltip = mouseTooltip;
+    }
+
+    public void addAction(Action action) {
+	this.action = action;
     }
 }

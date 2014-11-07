@@ -13,23 +13,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import sk.exceptional.spongia14.api.AllowAccessAction;
 import sk.exceptional.spongia14.api.Dialog;
-import sk.exceptional.spongia14.api.DialogActor;
-import sk.exceptional.spongia14.api.DialogStartAction;
 import sk.exceptional.spongia14.api.DialogTriggerListener;
-import sk.exceptional.spongia14.api.Entrance;
-import sk.exceptional.spongia14.api.Item;
 import sk.exceptional.spongia14.api.MementoAddListener;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
-import sk.exceptional.spongia14.api.RemoveAction;
-import sk.exceptional.spongia14.api.Replica;
-import sk.exceptional.spongia14.api.Town;
 import sk.exceptional.spongia14.pnc.ClickableRegionSetContainer;
 import sk.exceptional.spongia14.pnc.ClickableRegionSetFactory;
-import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 import sk.tomsik68.resourceslib.Resources;
 
@@ -125,12 +116,14 @@ public class InRegionSetGameState extends BasicGameState implements
 		inMemento = true;
 		System.out.println("Janeviemus");
 	    }
-	} else if (inMemento) {
+	}
+	if (inMemento) {
 	    if (mementoGui.isDone()) {
 		inMemento = false;
 	    }
 	    mementoGui.update(gc);
-	} else {
+	}
+	if (inDialog) {
 	    if (dialogWizard.isDone()) {
 		inDialog = false;
 	    }

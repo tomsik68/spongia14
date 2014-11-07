@@ -46,7 +46,7 @@ public class MementoGui {
     }
 
     public void update(GameContainer gc) {
-	if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+	if (gc.getInput().isKeyDown(Input.KEY_ESCAPE)) {
 	    setDone(true);
 	}
 	if (gc.getInput().isKeyPressed(Input.KEY_LEFT)) {
