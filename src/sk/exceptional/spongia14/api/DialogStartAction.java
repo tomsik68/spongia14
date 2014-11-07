@@ -9,8 +9,7 @@ public class DialogStartAction extends Action {
 
     @Override
     public void execute(Mission mission, MissionState state) {
-	Dialog dialog = mission.getDialog(dialogId);
-	state.triggerDialog(dialog);
+	state.triggerDialog(dialogId);
     }
 
 }

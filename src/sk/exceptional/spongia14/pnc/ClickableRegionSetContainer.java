@@ -11,9 +11,11 @@ import sk.tomsik68.resourceslib.Resources;
 public class ClickableRegionSetContainer {
     private final ClickableRegionSet regionSet;
     private Image background;
-    private boolean wasPressed = false;
+    private static boolean wasPressed = false;
     private final Mission mission;
     private final MissionState missionState;
+    private int mouseX;
+    private int mouseY;
 
     public ClickableRegionSetContainer(Mission mission,
 	    MissionState missionState, ClickableRegionSet set) {
@@ -28,14 +30,14 @@ public class ClickableRegionSetContainer {
 
     public void render(Graphics gfx) {
 	gfx.drawImage(background, 0, 0);
-	regionSet.renderRegions(gfx);
+	regionSet.renderRegions(gfx, mouseX, mouseY);
     }
 
     public void update(Input input) {
+	mouseX = input.getMouseX();
+	mouseY = input.getMouseY();
 	if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && !wasPressed) {
-	    int x = input.getMouseX();
-	    int y = input.getMouseY();
-	    regionSet.onClick(mission, missionState, x, y);
+	    regionSet.onClick(mission, missionState, mouseX, mouseY);
 	    wasPressed = true;
 	} else
 	    wasPressed = false;

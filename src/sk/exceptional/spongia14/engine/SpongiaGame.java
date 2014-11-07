@@ -12,6 +12,7 @@ public class SpongiaGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer arg0) throws SlickException {
+	arg0.setShowFPS(false);
 	addState(new InRegionSetGameState());
     }
 
