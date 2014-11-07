@@ -9,6 +9,7 @@ public class Extremity {
 	private int width;
 	private int height;
 	private Point extrJointPos;
+
 	
 	public Body body;
 	private int bodyX, bodyY;
@@ -20,6 +21,7 @@ public class Extremity {
 		this.height = height;
 		
 	}
+	
 	
 	
 	public void setJoint(int offsetX, int offsetY) { 

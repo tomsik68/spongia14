@@ -12,7 +12,7 @@ public class Application extends BasicGame {
 	public static final int SCREEN_HEIGHT = 500;
 	
 	private Body body;
-	private Extremity leftArm, rightArm;
+	private Extremity arm, leg;
 	
 	public Application() {
 		super("Model");
@@ -21,12 +21,19 @@ public class Application extends BasicGame {
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		body = new Body(100, 100, 50, 50); // x, y, width, height
-		leftArm = new Extremity(50, 20); // width, height
-		rightArm = new Extremity(50, 20);
-		leftArm.setJoint(50, 10); // xOffset, yOffset
-		rightArm.setJoint(0, 10);
-		body.attach(leftArm, 0, 20); // object, offsetX, offsetY
-		body.attach(rightArm, 50, 20);
+		
+		arm = new Extremity(50, 20); // width, height
+		arm.setJoint(50, 10); // xOffset, yOffset
+
+		body.attach(arm, 0, 20, "leftArm");
+		body.attach(arm, 50, 20, "rightArm");
+
+		
+		leg = new Extremity(20, 50);
+		leg.setJoint(10, 0);
+
+		body.attach(leg, 10, 50, "leftLeg");
+		body.attach(leg, 40, 50, "rightLeg");
 		
 		
 		
@@ -36,27 +43,37 @@ public class Application extends BasicGame {
 	public void update(GameContainer container, int delta) throws SlickException {
 		Input input = container.getInput();
 		if(input.isKeyDown(Input.KEY_LEFT)) {
-			body.find(leftArm).rotateBy(1);
+			body.moveBy(-1, 0);
 		}
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
-			body.find(rightArm).rotateBy(1);
+			body.moveBy(1, 0);
 		}
 		
 		if(input.isKeyDown(Input.KEY_UP)) {
-			body.update();
-			body.getShape().setLocation(body.getShape().getX() + 1, body.getShape().getY());
+			body.moveBy(0, -1);
+		}
+		
+		if(input.isKeyDown(Input.KEY_DOWN)) {
+			body.moveBy(0, 1);
+		}
+		
+		if(input.isKeyDown(Input.KEY_R)) {
+			body.find("rightArm").rotateBy(1);
+			body.find("leftLeg").rotateBy(1);
+		}
+		
+		if(input.isKeyDown(Input.KEY_L)) {
+			body.find("leftArm").rotateBy(1);
 		}
 	}
 	
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		
-		g.draw(body.getShape());
-		//g.drawOval(jointX - 2, jointY - 2, 5, 5);
-		//g.drawRect(extremityX, extremityY, extremityWidth, extremityHeight);
-		g.draw(body.find(leftArm).getShape());
-		g.draw(body.find(rightArm).getShape());
+		body.draw(g);
+		g.drawString(new String("/\\, \\/, <-, ->, L, R"), 20, 30);
+		
 	
 	}
 
