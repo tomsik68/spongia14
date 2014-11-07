@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="chat_bubble.svg"
+   inkscape:export-filename="/home/jasku/dev/Eclipse_workbench/Spongia2014/res/gui/dlg_bubble.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="734.25899"
+     inkscape:cy="261.79839"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1918"
+     inkscape:window-height="1059"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-452.36218)">
+    <path
+       style="fill:#c3fbfb;fill-opacity:1;stroke:#000000;stroke-width:5.92154789;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0"
+       d="m 23.414633,1020.8481 c 21.295886,48.4704 193.358847,25.3201 298.467357,30.2235 129.84969,-2.8561 385.72442,5.8198 423.2964,-12.9278 37.57198,-18.7476 63.16381,-161.93019 41.82776,-259.07872 C 765.6701,681.91655 602.14004,685.58088 495.1938,678.35965 400.47742,676.68976 298.04013,695.19382 203.40088,672.66925 151.77459,660.38196 86.077754,568.25931 59.894197,603.73384 100.79345,646.94907 93.703144,679.93184 43.326291,723.00106 -7.0505616,766.07028 2.1187481,972.37781 23.414633,1020.8481 z"
+       id="rect2985"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="zczzcaczz" />
+  </g>
+</svg>

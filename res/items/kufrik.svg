@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="600"
+   id="svg7828"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="kufrik.svg"
+   inkscape:export-filename="/home/jasku/dev/Eclipse_workbench/Spongia2014/res/items/kufrik.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs7830" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="341.7674"
+     inkscape:cy="402.01732"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1278"
+     inkscape:window-height="1003"
+     inkscape:window-x="1920"
+     inkscape:window-y="19"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7833">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-452.36218)">
+    <g
+       transform="matrix(0.4626075,0.03493108,-0.03493108,0.4626075,391.85909,479.34619)"
+       id="g7795">
+      <g
+         transform="matrix(1,0,0,0.9176843,-24.243661,59.833235)"
+         id="g7755">
+        <rect
+           style="fill:#999999;fill-opacity:1;stroke:#000000;stroke-width:3.05599999;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect4347"
+           width="332.71338"
+           height="268.37076"
+           x="160.42592"
+           y="703.93817" />
+        <path
+           style="fill:#666666;stroke:#000000;stroke-width:2.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 160.02252,703.44114 26.26397,-26.26397 330.32095,-0.167 -0.53601,1.0663 -23.21429,25 z"
+           id="path5135"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccc" />
+        <path
+           style="fill:#666666;stroke:#000000;stroke-width:2.70000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 493.6857,971.49727 25.772,-26.7468 -1.87449,-266.16628 -23.99574,23.70048 z"
+           id="path5135-8"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <path
+           style="fill:#000000;stroke:#000000;stroke-width:1.56871235px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 294.76217,641.63769 9.92602,48.94711 6.68032,0.14539 -1.43903,-34.44382 61.94951,1.75714 1.2899,32.09986 5.74715,-0.25246 7.23586,-44.66528 z"
+           id="path8960-5"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccccccc" />
+      </g>
+      <g
+         transform="matrix(0.95166471,0.22693111,-0.21175734,0.88803158,193.88646,28.715192)"
+         id="g7789">
+        <rect
+           style="fill:#e9e5af;fill-opacity:1;stroke:#000000;stroke-width:2.70000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect7761"
+           width="278.57144"
+           height="184.28572"
+           x="162.18491"
+           y="730.73053" />
+        <text
+           xml:space="preserve"
+           style="font-size:44.90839005px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="314.53568"
+           y="791.39539"
+           id="text7763"
+           sodipodi:linespacing="125%"
+           transform="scale(0.98395194,1.0163098)"><tspan
+             sodipodi:role="line"
+             id="tspan7765"
+             x="314.53568"
+             y="791.39539"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier New;-inkscape-font-specification:Courier New Bold">Michael</tspan><tspan
+             sodipodi:role="line"
+             x="314.53568"
+             y="847.53088"
+             id="tspan7767"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier New;-inkscape-font-specification:Courier New Bold">Greenwich</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

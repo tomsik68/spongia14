@@ -13,7 +13,7 @@ public class GameLauncher implements Runnable {
 	try {
 	    AppGameContainer container = new AppGameContainer(new SpongiaGame());
 	    // MAX FPS
-	    container.setMaximumLogicUpdateInterval(60);
+	    container.setMaximumLogicUpdateInterval(1000/60);
 	    container.setDisplayMode(800, 600, false);
 	    container.start();
 	} catch (Exception e) {
