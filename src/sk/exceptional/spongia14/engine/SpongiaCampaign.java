@@ -117,17 +117,17 @@ public class SpongiaCampaign {
 		"Prepacte sefe, mal som tazke rano. Som Vam plne k dispozicii.\nCo by ste potrebovali?",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Mam pre teba pracu. Potreboval by som, aby si sa zbavil jedneho cloveka.\nSposobuje nam vazne problemy. Informacie o tvojom cieli\n ti uz urcite davno prisli v zasielke ty spachtos. \nV tej zasielke mas aj prvu polovicu vyplaty. \nDruhu ako obvykle dostanes po splneni prace.",
+		"Mam pre teba pracu. Potrebujem, aby si sa zbavil jedneho cloveka.\nSposobuje nam vazne problemy. Informacie o tvojom cieli\n ti uz urcite davno prisli v zasielke ty spachtos. \nV tej zasielke mas aj prvu polovicu vyplaty. \nDruhu ako obvykle dostanes po splneni prace.",
 		"boss"));
 	dialog.addReplica(new Replica(
-		"Rozumiem, mame este nejake doplnujuce info ktore nenajdem v zasielke?",
+		"Rozumiem, mate este nejake doplnujuce informacie ktore v zasielke nenajdem?",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Ano,tento ciel je velmi slizky a uz dlho sa ho snazime zabit.\nAk sa ti to nepodari bude trvat velmi dlho kym ho zas najdeme tak ma nesklam.",
+		"Ano,tento ciel je velmi slizky a uz dlho sa ho snazime zbavit.\nAk sa ti to nepodari bude trvat velmi dlho kym ho zas najdeme tak ma nesklam.",
 		"boss"));
 	dialog.addReplica(new Replica("Ozvem sa ked to bude hotove.", "murd"));
 	dialog.addReplica(new Replica(
-		"Este jedna vec,jedina fotka ciela ktoru mame je velmi rozmazana,\n takze sa najprv dobre uisti ze je to tvoj ciel.",
+		"Este jedna vec,jedina fotka ciela ktoru mame je velmi rozmazana,\n takze sa najprv dobre uisti ze mas spravneho. Nepotrebujeme predsa ziadne neprijemnosti",
 		"boss"));
 	dialog.addReplica(new Replica("Vykonam. Zatial.", "murd"));
 	return dialog;

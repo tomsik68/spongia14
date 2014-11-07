@@ -10,7 +10,6 @@ import sk.exceptional.spongia14.api.MissionState;
 public abstract class ClickableRegion {
     private boolean remove = false;
     private String mouseTooltip;
-    protected Action action;
 
     public ClickableRegion() {
     }
@@ -22,12 +21,15 @@ public abstract class ClickableRegion {
     }
 
     void onClick(Mission mission, MissionState state) {
+	Action action = getAction();
 	action.execute(mission, state);
 	if (action instanceof ActionSet) {
 	    ActionSet set = (ActionSet) action;
 	    remove |= set.isRemove();
 	}
     }
+
+    protected abstract Action getAction();
 
     public void render(Graphics gfx) {
 
@@ -43,9 +45,5 @@ public abstract class ClickableRegion {
 
     public void setMouseTooltip(String mouseTooltip) {
 	this.mouseTooltip = mouseTooltip;
-    }
-
-    public void addAction(Action action) {
-	this.action = action;
     }
 }

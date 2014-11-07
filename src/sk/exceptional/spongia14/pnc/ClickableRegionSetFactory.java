@@ -35,12 +35,8 @@ public class ClickableRegionSetFactory {
 	    // TODO: add people
 
 	    for (Entrance entrance : place.getEntrances()) {
-		ClickableRegion cr = new RectangularClickableRegion(entrance.x,
-			entrance.y, entrance.w, entrance.h);
-		SwitchPlaceAction spa = new SwitchPlaceAction(
-			entrance.destination);
-		spa.setCantEnterText(entrance.cantEnterText);
-		cr.addAction(spa);
+		EntranceClickableRegion cr = new EntranceClickableRegion(
+			entrance);
 		result.addRegion(cr);
 	    }
 	    cache.put(place.getId(), result);

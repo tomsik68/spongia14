@@ -1,6 +1,6 @@
 package sk.exceptional.spongia14.pnc;
 
-public class RectangularClickableRegion extends ClickableRegion {
+public abstract class RectangularClickableRegion extends ClickableRegion {
     protected final int x, y, w, h;
     protected boolean shouldRemove = false;
 

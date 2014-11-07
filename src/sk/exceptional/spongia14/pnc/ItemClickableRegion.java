@@ -3,10 +3,8 @@ package sk.exceptional.spongia14.pnc;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import sk.exceptional.spongia14.api.ActionSet;
+import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Item;
-import sk.exceptional.spongia14.api.Mission;
-import sk.exceptional.spongia14.api.MissionState;
 
 public class ItemClickableRegion extends RectangularClickableRegion {
 
@@ -17,7 +15,6 @@ public class ItemClickableRegion extends RectangularClickableRegion {
 	super(itemContainer.getX(), itemContainer.getY(), image.getWidth(),
 		image.getHeight());
 	this.itemContainer = itemContainer;
-	this.action = itemContainer.getActionSet();
 	this.image = image;
     }
 
@@ -29,5 +26,10 @@ public class ItemClickableRegion extends RectangularClickableRegion {
 
     public Item getItem() {
 	return itemContainer.getItem();
+    }
+
+    @Override
+    protected Action getAction() {
+	return itemContainer.getActionSet();
     }
 }
