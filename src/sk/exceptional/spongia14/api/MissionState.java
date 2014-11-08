@@ -105,4 +105,8 @@ public class MissionState {
     public void changePersonState(String person, String personStateId) {
 	peopleShortcuts.get(person).setState(personStateId);
     }
+
+    public void denyAccess(String placeId) {
+	allowedPlaces.remove(placeId);
+    }
 }

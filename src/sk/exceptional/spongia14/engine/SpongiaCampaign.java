@@ -18,8 +18,11 @@ import sk.exceptional.spongia14.api.actions.AddMementoAction;
 import sk.exceptional.spongia14.api.actions.AllowAccessAction;
 import sk.exceptional.spongia14.api.actions.CancelIfNoItemAction;
 import sk.exceptional.spongia14.api.actions.ChangePersonState;
+import sk.exceptional.spongia14.api.actions.DenyAccessAction;
 import sk.exceptional.spongia14.api.actions.DialogStartAction;
+import sk.exceptional.spongia14.api.actions.GiveItemAction;
 import sk.exceptional.spongia14.api.actions.RemoveAction;
+import sk.exceptional.spongia14.api.actions.TakeItemAction;
 import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PersonContainer;
 
@@ -92,6 +95,14 @@ public class SpongiaCampaign {
 	    // a mobil odtial zmizne
 	    ic.addAction(new RemoveAction());
 
+	    Item stoEuro = new Item("stoEuro", "Sto Euro",
+		    "Cast tvojej vyplaty", "items.cash");
+	    mission.registerItem(stoEuro);
+	    ic = new ItemContainer(stoEuro, 98, 540);
+	    ic.addAction(new RemoveAction());
+	    ic.addAction(new GiveItemAction(stoEuro.getUniqueID()));
+	    bytVraha.addItem(ic);
+
 	    town.addPlace(bytVraha);
 
 	    Place restikaVstup = new Place("restauraciaVstup",
@@ -100,19 +111,35 @@ public class SpongiaCampaign {
 		    205));
 	    restikaVstup.addEntrance(new Entrance("restauraciaIn1", 655, 120,
 		    128, 205));
-	    restikaVstup
-		    .addEntrance(new Entrance("pivnica", 530, 375, 150, 150));
+	    restikaVstup.addEntrance(new Entrance("restauraciaPivnica", 530,
+		    375, 150, 150));
 
 	    Person uvitaciaServirka = new Person("waitress");
-
+	    // rozpravam sa so servirkou 1. krat
 	    PersonState state = new PersonState("stav1");
 	    ActionSet actionSet = new ActionSet();
 	    actionSet.addAction(new DialogStartAction("dialogSoServirkou0"));
 	    actionSet.addAction(new AddMementoAction("memento.memento2"));
-	    actionSet.addAction(new CancelIfNoItemAction("stoEuro"));
 	    actionSet.addAction(new ChangePersonState("waitress", "stav2"));
+	    state.setAction(actionSet);
+	    uvitaciaServirka.addState(state);
+	    // rozpravam sa s nou niekolky krat a mozno dostane stoEuro
+	    state = new PersonState("stav2");
+	    actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSoServirkou0"));
+	    actionSet.addAction(new CancelIfNoItemAction("stoEuro"));
+	    actionSet.addAction(new TakeItemAction("stoEuro"));
+	    actionSet.addAction(new ChangePersonState("waitress", "stav3"));
 	    actionSet.addAction(new DialogStartAction("dialogSoServirkou1"));
 	    actionSet.addAction(new AllowAccessAction("restauraciaIn1"));
+	    state.setAction(actionSet);
+	    uvitaciaServirka.addState(state);
+	    // dal som jej stoEuro a pytam sa, kde je ciel
+	    state = new PersonState("stav3");
+	    actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSoServirkou2"));
+	    actionSet.addAction(new AddMementoAction("memento.memento3"));
+	    actionSet.addAction(new DenyAccessAction("planMesta"));
 	    state.setAction(actionSet);
 	    uvitaciaServirka.addState(state);
 
@@ -122,18 +149,85 @@ public class SpongiaCampaign {
 	    town.addPlace(restikaVstup);
 
 	    Place restika = new Place("restauraciaIn1", "buildings.in.restika");
+	    restika.addEntrance(e = new Entrance("restauraciaVstup", 680, 80,
+		    100, 80));
+
+	    Item jedlo = new Item("jedlo", "Steak s hranolkami",
+		    "Jedlo pre Jasona Grahama", "items.jedlo");
+	    mission.registerItem(jedlo);
+	    ic = new ItemContainer(jedlo, 110, 250);
+	    ic.addAction(new GiveItemAction("jedlo"));
+	    ic.addAction(new RemoveAction());
+	    ic.addAction(new CancelIfNoItemAction("jed"));
+	    ic.addAction(new TakeItemAction("jedlo"));
+	    ic.addAction(new TakeItemAction("jed"));
+	    ic.addAction(new GiveItemAction("otraveneJedlo"));
+	    restika.addItem(ic);
+
+	    Item otraveneJedlo = new Item("otraveneJedlo",
+		    "Otraveny steak s hranolkami", "Jedlo pre Jasona Graya",
+		    "items.jedlo");
+	    mission.registerItem(otraveneJedlo);
+
+	    Person target1 = new Person("jasonGraham");
+	    state = new PersonState("stratilaSaObjednavka");
+	    actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSTargetom1"));
+	    actionSet.addAction(new ChangePersonState("jasonGraham",
+		    "kdeMamJedlo"));
+	    state.setAction(actionSet);
+	    target1.addState(state);
+	    state = new PersonState("kdeMamJedlo");
+	    actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSTargetom2"));
+	    state.setAction(actionSet);
+	    target1.addState(state);
+	    restika.addPerson(new PersonContainer(target1,
+		    "stratilaSaObjednavka", 333, 398));
 	    town.addPlace(restika);
+
+	    Place restikaPivnica = new Place("restauraciaPivnica",
+		    "buildings.in.pivnica");
+	    Item jedNaPotkany = new Item(
+		    "jed",
+		    "Jed",
+		    "Jed na potkany, ktory si nasiel v pivnici. Je ho dost na to, aby zabil cloveka",
+		    "items.jedNaPotkany");
+	    restikaPivnica.addItem(ic = new ItemContainer(jedNaPotkany, 0, 0));
+	    ic.addAction(new GiveItemAction("jed"));
+	    ic.addAction(new RemoveAction());
+	    ic.addAction(new CancelIfNoItemAction("jedlo"));
+	    ic.addAction(new TakeItemAction("jed"));
+	    ic.addAction(new TakeItemAction("jedlo"));
+	    ic.addAction(new GiveItemAction("otraveneJedlo"));
+
+	    mission.registerItem(jedNaPotkany);
+
+	    town.addPlace(restikaPivnica);
 
 	    // tu pridavam mesto do misie
 	    mission.setTown(town);
 	    // tu pridavam dialogy do misie
 	    Dialog dialog = createBossDialog();
 	    mission.registerDialog(dialog);
-
+	    // dialogy s casnickou
 	    dialog = createRestaurantWaitressDialog1();
 	    mission.registerDialog(dialog);
 
 	    dialog = createRestaurantWaitressDialog0();
+	    mission.registerDialog(dialog);
+
+	    dialog = createRestaurantWaitressDialog2();
+	    mission.registerDialog(dialog);
+
+	    // dialogy s targetom 1
+	    dialog = createRestaurantTargetDialog1();
+	    mission.registerDialog(dialog);
+
+	    dialog = createRestaurantTargetDialog2();
+	    mission.registerDialog(dialog);
+
+	    dialog = createRestaurantTargetDialog3();
 	    mission.registerDialog(dialog);
 
 	    return mission;
@@ -229,10 +323,10 @@ public class SpongiaCampaign {
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Prepáčte ešte na minútku, ako sme išli k stolu tak sa mi zdalo že som spatril starého priateľa. Má tu niekto stôl na meno Graham?",
+		"Prepáčte ešte na minútku, ako som išiel k stolu tak sa mi zdalo,\n že som spatril starého priateľa. Má tu niekto stôl na meno Graham?",
 		"murd"));
-	dialog.addReplica(new Replica("Ano má. Pán graham sedí tamto naľavo.",
-		"wait"));
+	dialog.addReplica(new Replica(
+		"Ano má. Pán graham sedí tamto v strede.", "wait"));
 	return dialog;
     }
 
@@ -243,16 +337,31 @@ public class SpongiaCampaign {
 	// actor ma ID a Meno
 	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
 		"portrait.greenwich"));
-	dialog.addActor(new DialogActor("targ", "Target1", "portrait.Target1"));
+	dialog.addActor(new DialogActor("targ", "Target1", "portrait.target1"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Je mi ľúto pane, ale pri neštastnej náhode sa nám stratila vaša objednávka. Mohli by ste mi ju prosim dať znova?",
+		"Je mi ľúto pane, ale pri neštastnej náhode sa nám stratila vaša objednávka.\n Mohli by ste mi ju prosim dať znova?",
 		"murd"));
 	dialog.addReplica(new Replica(
 		"Zaiste, objednal som si steak s hranolkami.", "targ"));
 	dialog.addReplica(new Replica(
 		"Ďakujem, ešte raz sa ospravedlňujem za meškanie.", "murd"));
+	return dialog;
+    }
+
+    private static Dialog createRestaurantTargetDialog3()
+	    throws NameAlreadyBoundException {
+	Dialog dialog = new Dialog("dialogSTargetom3");
+	// actori/ucastnici dialogu
+	// actor ma ID a Meno
+	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
+		"portrait.greenwich"));
+	dialog.addActor(new DialogActor("targ", "Target1", "portrait.target1"));
+	// repliky dialogov
+	// replika ma text a ID actora, ktory ju hovori
+	dialog.addReplica(new Replica("Vaše jedlo pane.", "murd"));
+	dialog.addReplica(new Replica("Ďakujem.", "targ"));
 	return dialog;
     }
 
@@ -263,11 +372,15 @@ public class SpongiaCampaign {
 	// actor ma ID a Meno
 	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
 		"portrait.greenwich"));
-	dialog.addActor(new DialogActor("targ", "Target1", "portrait.Target1"));
+	dialog.addActor(new DialogActor("targ", "Target1", "portrait.target1"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
-	dialog.addReplica(new Replica("Vaše jedlo pane.", "murd"));
-	dialog.addReplica(new Replica("Ďakujem.", "targ"));
+	dialog.addReplica(new Replica(
+		"Prinesiete mi uz to jedlo?\n Zacinam mat chut... odist bez platenia!",
+		"targ"));
+	dialog.addReplica(new Replica(
+		"Zaiste. Poprosim Vas o chvilu strpenia.", "murd"));
+
 	return dialog;
     }
 
