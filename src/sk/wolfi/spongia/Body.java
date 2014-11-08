@@ -4,55 +4,47 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Transform;
 
 public class Body {
 	private int width, height;
-	private List<ContainedExtremity> extremities;
+	private List<Extremity> extremities;
 	private Shape shape;
+	protected Image image;
+	protected Point position;
 	
-	public Body(int x, int y, int width, int height) {
+	public Body(int x, int y, int width, int height, String imgLocation) {
 		this.width = width;
 		this.height = height;
-		this.shape = new Rectangle(x, y, width, height);
-		this.extremities = new ArrayList<ContainedExtremity>();
-	}
-	
-	public void attach(Extremity extremity, int bodyJointX, int bodyJointY, String extrName) {
-		ContainedExtremity contEx = new ContainedExtremity(extremity, bodyJointX, bodyJointY, this.shape, extrName);
-		extremities.add(contEx);
-	}
-	
-	public ContainedExtremity find(String name) {
-		for(ContainedExtremity ex : this.extremities) {
-			if(ex.getName().equals(name)) {
-				return ex;
-			}
-		}
-		return null;
-	}
-	
-	public void update(float xOffset, float yOffset) {
-		for(ContainedExtremity ex : this.extremities) {
-			ex.setShape(ex.getShape().transform(Transform.createTranslateTransform(xOffset, yOffset)));
+		this.extremities = new ArrayList<Extremity>();
+		this.position = new Point(x, y);
+		try {
+			this.image = new Image(imgLocation);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
-	public void moveBy(float x, float y) {
-		this.update(x, y);
-		float curXPos = this.shape.getX();
-		float curYPos = this.shape.getY();
-		this.shape.setLocation(curXPos + x, curYPos + y);
+	public void attach(Extremity extremity) {
+		extremities.add(extremity);
 	}
 	
-	public void draw(Graphics g) {
-		g.draw(this.shape);
-		for(ContainedExtremity e : this.extremities) {
-			g.draw(e.getShape());
+	
+	
+	
+	
+	
+	/*public void draw(Graphics g) {
+		this.image.draw(this.position.getX(), this.position.getY());
+		for(Extremity e : this.extremities) {
+			e.draw(g);
 		}
-	}
+	}*/
 	
 	// getters and setters
 	
@@ -66,5 +58,9 @@ public class Body {
 	
 	public Shape getShape() {
 		return this.shape;
+	}
+	
+	public Point getPosition() {
+		return this.position;
 	}
 }
