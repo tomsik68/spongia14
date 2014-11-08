@@ -7,7 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class SpongiaGame extends StateBasedGame {
 
     public SpongiaGame() {
-	super("Exceptional Game");
+	super("Exceptional Srandosak");
     }
 
     @Override
