@@ -4,7 +4,7 @@ import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.SwitchPlaceAction;
 
-public class EntranceClickableRegion extends RectangularClickableRegion {
+public class EntranceClickableRegion extends StaticRectangularClickableRegion {
     private Entrance entrance;
     private SwitchPlaceAction spa;
 

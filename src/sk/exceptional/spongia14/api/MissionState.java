@@ -3,6 +3,10 @@ package sk.exceptional.spongia14.api;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.naming.NameAlreadyBoundException;
+
+import sk.exceptional.spongia14.pnc.ItemContainer;
+import sk.exceptional.spongia14.pnc.PersonContainer;
 import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 
 public class MissionState {
@@ -12,11 +16,15 @@ public class MissionState {
     private final Inventory inventory;
     private final Mission mission;
     private final HashSet<String> allowedPlaces;
+    private final Registry<PersonContainer> peopleShortcuts;
+    private final Registry<ItemContainer> itemShortcuts;
 
     public MissionState(Mission mission) {
 	inventory = new Inventory();
 	this.mission = mission;
 	allowedPlaces = new HashSet<String>();
+	peopleShortcuts = new Registry<>();
+	itemShortcuts = new Registry<>();
     }
 
     public final Inventory getInventory() {
@@ -31,6 +39,24 @@ public class MissionState {
     private void doTriggerDialog(Dialog dialog) {
 	for (DialogTriggerListener listener : dialogListeners) {
 	    listener.onTriggerDialog(dialog);
+	}
+    }
+
+    public final void addItemShortcut(ItemContainer ic) {
+	try {
+	    itemShortcuts.register(ic.getItem().getUniqueID(), ic);
+	} catch (NameAlreadyBoundException e) {
+	    e.printStackTrace();
+	    System.exit(1);
+	}
+    }
+
+    public final void addPersonShortcut(PersonContainer pc) {
+	try {
+	    peopleShortcuts.register(pc.getPerson().getUniqueID(), pc);
+	} catch (NameAlreadyBoundException e) {
+	    e.printStackTrace();
+	    System.exit(1);
 	}
     }
 
@@ -74,5 +100,9 @@ public class MissionState {
 
     public void addMementoListener(MementoAddListener listener) {
 	mementoListeners.add(listener);
+    }
+
+    public void changePersonState(String person, String personStateId) {
+	peopleShortcuts.get(person).setState(personStateId);
     }
 }

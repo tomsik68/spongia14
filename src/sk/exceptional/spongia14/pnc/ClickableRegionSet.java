@@ -45,14 +45,14 @@ public class ClickableRegionSet {
 	    if (region.contains(mouseX, mouseY)) {
 		if (region instanceof RectangularClickableRegion) {
 		    RectangularClickableRegion rect = (RectangularClickableRegion) region;
-		    int x = rect.x;
-		    int y = rect.y;
-		    int w = Math.min(rect.w, rect.h);
+		    int x = rect.getX();
+		    int y = rect.getY();
+		    int w = Math.min(rect.getWidth(), rect.getHeight());
 		    int h = w;
-		    if (rect.w > rect.h) {
-			x += rect.w / 2 - w / 2;
-		    } else if (rect.h > rect.w) {
-			y += rect.h / 2 - h / 2;
+		    if (rect.getWidth() > rect.getHeight()) {
+			x += rect.getWidth() / 2 - w / 2;
+		    } else if (rect.getHeight() > rect.getWidth()) {
+			y += rect.getHeight() / 2 - h / 2;
 		    }
 		    gfx.setColor(Color.magenta);
 		    gfx.setLineWidth(3);

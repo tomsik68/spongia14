@@ -21,7 +21,7 @@ public class ActionSet extends Action {
 	    action.execute(mission, state);
 	    if (action instanceof CancelAction) {
 		CancelAction cancelAction = (CancelAction) action;
-		if (cancelAction.meetsConditions(state)) {
+		if (cancelAction.shouldCancel(state)) {
 		    break;
 		}
 	    } else if (action instanceof RemoveAction) {

@@ -24,20 +24,21 @@ public class MementoGui {
     }
 
     public void show() {
-	setDone(false);
+	setDone(mementos.size() > 0);
 	mementoIndex = mementos.size() - 1;
-	checkIndex();
+	reloadMemento();
     }
 
-    private void checkIndex() {
+    private void reloadMemento() {
 	if (mementoIndex <= -1) {
 	    mementoIndex = mementos.size() - 1;
 	}
 	if (mementoIndex > mementos.size() - 1) {
 	    mementoIndex = 0;
 	}
-	memento = resources.getImage(mementos.get(mementoIndex));
-
+	if (mementoIndex != -1)
+	    memento = resources.getImage(mementos.get(mementoIndex));
+	setDone(mementoIndex == -1);
     }
 
     public void render(Graphics gfx) {
@@ -51,11 +52,11 @@ public class MementoGui {
 	}
 	if (gc.getInput().isKeyPressed(Input.KEY_LEFT)) {
 	    --mementoIndex;
-	    checkIndex();
+	    reloadMemento();
 	}
 	if (gc.getInput().isKeyPressed(Input.KEY_RIGHT)) {
 	    ++mementoIndex;
-	    checkIndex();
+	    reloadMemento();
 	}
     }
 
@@ -68,6 +69,7 @@ public class MementoGui {
     }
 
     public void addMemento(String mementoRes) {
-	mementos.add(mementoRes);
+	if (!mementos.contains(mementoRes))
+	    mementos.add(mementoRes);
     }
 }

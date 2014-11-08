@@ -82,7 +82,7 @@ public class InRegionSetGameState extends BasicGameState implements
 		gfx.fillRect(0, 0, gc.getWidth(), gc.getHeight());
 	    }
 	}
-	if (inMemento) {
+	if (inMemento && !mementoGui.isDone()) {
 	    mementoGui.render(gfx);
 	}
 	if (inDialog) {
@@ -99,7 +99,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	 * null; }
 	 */
 	// pri prechode nefunguje nic
-	if (!inDialog) {
+	if (!inDialog && !inMemento) {
 	    if (fadeTimer == 0) {
 		container.update(gc.getInput());
 	    } else {
@@ -107,7 +107,7 @@ public class InRegionSetGameState extends BasicGameState implements
 		if (fadeTimer == 0) {
 		    container = new ClickableRegionSetContainer(mission,
 			    missionState, crsFactory.createCRS(mission,
-				    newPlace));
+				    missionState, newPlace));
 		    container.init(resources);
 		}
 	    }
@@ -120,8 +120,8 @@ public class InRegionSetGameState extends BasicGameState implements
 	if (inMemento) {
 	    if (mementoGui.isDone()) {
 		inMemento = false;
-	    }
-	    mementoGui.update(gc);
+	    } else
+		mementoGui.update(gc);
 	}
 	if (inDialog) {
 	    if (dialogWizard.isDone()) {

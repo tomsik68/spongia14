@@ -6,7 +6,7 @@ import org.newdawn.slick.Image;
 import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Item;
 
-public class ItemClickableRegion extends RectangularClickableRegion {
+public class ItemClickableRegion extends StaticRectangularClickableRegion {
 
     private final Image image;
     private final ItemContainer itemContainer;

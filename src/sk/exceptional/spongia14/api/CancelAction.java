@@ -11,6 +11,6 @@ public abstract class CancelAction extends Action {
 	
     }
 
-    public abstract boolean meetsConditions(MissionState state);
+    public abstract boolean shouldCancel(MissionState state);
 
 }

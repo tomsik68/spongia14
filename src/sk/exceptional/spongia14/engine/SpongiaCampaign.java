@@ -2,7 +2,11 @@ package sk.exceptional.spongia14.engine;
 
 import javax.naming.NameAlreadyBoundException;
 
+import sk.exceptional.spongia14.api.ActionSet;
+import sk.exceptional.spongia14.api.AddMementoAction;
 import sk.exceptional.spongia14.api.AllowAccessAction;
+import sk.exceptional.spongia14.api.CancelIfNoItem;
+import sk.exceptional.spongia14.api.ChangePersonState;
 import sk.exceptional.spongia14.api.Dialog;
 import sk.exceptional.spongia14.api.DialogActor;
 import sk.exceptional.spongia14.api.DialogStartAction;
@@ -10,18 +14,20 @@ import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Item;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
+import sk.exceptional.spongia14.api.Person;
+import sk.exceptional.spongia14.api.PersonState;
 import sk.exceptional.spongia14.api.Place;
 import sk.exceptional.spongia14.api.RemoveAction;
 import sk.exceptional.spongia14.api.Replica;
 import sk.exceptional.spongia14.api.Town;
 import sk.exceptional.spongia14.pnc.ItemContainer;
+import sk.exceptional.spongia14.pnc.PersonContainer;
 
 public class SpongiaCampaign {
 
     public static void prepareState(MissionState missionState) {
-	/**/
 	missionState.allowEntrance("bytVraha");
-	/**/
+	missionState.allowEntrance("restauraciaVstup");
     }
 
     public static String getBeginningPlace() {
@@ -38,6 +44,8 @@ public class SpongiaCampaign {
 
 	    Place planMesta = new Place("planMesta", "buildings.out.planMesta");
 	    e = new Entrance("domVraha", 295, 84, 140, 140);
+	    planMesta.addEntrance(e);
+	    e = new Entrance("restauraciaVstup", 490, 70, 230, 180);
 	    planMesta.addEntrance(e);
 	    town.addPlace(planMesta);
 
@@ -60,6 +68,7 @@ public class SpongiaCampaign {
 	    // TakeItemAction
 	    ic.addAction(new RemoveAction());
 	    ic.addAction(new AllowAccessAction("planMesta"));
+	    ic.addAction(new AddMementoAction("memento.memento1"));
 	    // place treba po vsetkych upravach pridat do mesta
 	    town.addPlace(domVraha);
 
@@ -83,12 +92,36 @@ public class SpongiaCampaign {
 
 	    town.addPlace(bytVraha);
 
+	    Place restika = new Place("restauraciaVstup",
+		    "buildings.in.restika");
+
+	    Person uvitaciaServirka = new Person("waitress");
+
+	    PersonState state = new PersonState("stav1");
+	    ActionSet actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSoServirkou0"));
+	    actionSet.addAction(new CancelIfNoItem("stoEuro"));
+	    actionSet.addAction(new ChangePersonState("waitress", "stav2"));
+	    state.setAction(actionSet);
+	    uvitaciaServirka.addState(state);
+
+	    restika.addPerson(new PersonContainer(uvitaciaServirka, "stav1", 0,
+		    0));
+
+	    town.addPlace(restika);
+
 	    // tu pridavam mesto do misie
 	    mission.setTown(town);
 	    // tu pridavam dialogy do misie
-
 	    Dialog dialog = createBossDialog();
 	    mission.registerDialog(dialog);
+
+	    dialog = createRestaurantWaitressDialog1();
+	    mission.registerDialog(dialog);
+
+	    dialog = createRestaurantWaitressDialog0();
+	    mission.registerDialog(dialog);
+
 	    return mission;
 	} catch (Exception e) {
 	    throw new RuntimeException(e);
@@ -129,6 +162,26 @@ public class SpongiaCampaign {
 	return dialog;
     }
 
+    private static Dialog createRestaurantWaitressDialog0()
+	    throws NameAlreadyBoundException {
+	Dialog dialog = new Dialog("dialogSoServirkou0");
+	// actori/ucastnici dialogu
+	// actor ma ID a Meno
+	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
+		"portrait.greenwich"));
+	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.waitress"));
+	// repliky dialogov
+	// replika ma text a ID actora, ktory ju hovori
+	dialog.addReplica(new Replica(
+		"Dobrý večer pane, máte u nas rezerváciu?", "wait"));
+	dialog.addReplica(new Replica(
+		"Áno, mala by tu byť rezervácia na meno Nathan Grayson.",
+		"murd"));
+	dialog.addReplica(new Replica(
+		"Prepacte, na toto meno tu nemam rezervaciu", "wait"));
+	return dialog;
+    }
+
     private static Dialog createRestaurantWaitressDialog1()
 	    throws NameAlreadyBoundException {
 	Dialog dialog = new Dialog("dialogSoServirkou1");
@@ -136,7 +189,7 @@ public class SpongiaCampaign {
 	// actor ma ID a Meno
 	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
 		"portrait.greenwich"));
-	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.Waitress"));
+	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.waitress"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
@@ -156,7 +209,7 @@ public class SpongiaCampaign {
 	// actor ma ID a Meno
 	dialog.addActor(new DialogActor("murd", "Michael Greenwich",
 		"portrait.greenwich"));
-	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.Waitress"));
+	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.waitress"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(

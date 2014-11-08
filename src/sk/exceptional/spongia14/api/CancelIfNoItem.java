@@ -9,7 +9,7 @@ public class CancelIfNoItem extends CancelAction {
     }
 
     @Override
-    public boolean meetsConditions(MissionState state) {
-	return state.getInventory().hasItem(itemId);
+    public boolean shouldCancel(MissionState state) {
+	return !state.getInventory().hasItem(itemId);
     }
 }

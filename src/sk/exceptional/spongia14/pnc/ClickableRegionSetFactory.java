@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Mission;
+import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
 import sk.exceptional.spongia14.api.SwitchPlaceAction;
 import sk.tomsik68.resourceslib.Resources;
@@ -21,7 +22,8 @@ public class ClickableRegionSetFactory {
 	resources = res;
     }
 
-    public ClickableRegionSet createCRS(Mission mission, Place place) {
+    public ClickableRegionSet createCRS(Mission mission, MissionState state,
+	    Place place) {
 	ClickableRegionSet result;
 	if (!cache.containsKey(place.getId())) {
 	    result = new ClickableRegionSet(place.getBackgroundImage());
@@ -31,9 +33,14 @@ public class ClickableRegionSetFactory {
 			resources.getImage(itemContainer.getItem()
 				.getResourceImage()));
 		result.addRegion(cr);
+		state.addItemShortcut(itemContainer);
 	    }
-	    // TODO: add people
-
+	    for (PersonContainer personContainer : place.getPeople()) {
+		PersonClickableRegion reg = new PersonClickableRegion(
+			personContainer);
+		result.addRegion(reg);
+		state.addPersonShortcut(personContainer);
+	    }
 	    for (Entrance entrance : place.getEntrances()) {
 		EntranceClickableRegion cr = new EntranceClickableRegion(
 			entrance);

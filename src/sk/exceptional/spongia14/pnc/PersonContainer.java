@@ -5,13 +5,14 @@ import sk.exceptional.spongia14.api.PersonState;
 
 public class PersonContainer {
     private final Person person;
-    private String state;
+    private PersonState currentState;
     private int x, y;
 
-    public PersonContainer(Person person, int x, int y) {
+    public PersonContainer(Person person, String defState, int x, int y) {
 	this.person = person;
 	this.setX(x);
 	this.setY(y);
+	currentState = person.getState(defState);
     }
 
     public Person getPerson() {
@@ -43,10 +44,10 @@ public class PersonContainer {
     }
 
     public PersonState getState() {
-	return person.getState(state);
+	return currentState;
     }
 
     public void setState(String state) {
-	this.state = state;
+	this.currentState = person.getState(state);
     }
 }
