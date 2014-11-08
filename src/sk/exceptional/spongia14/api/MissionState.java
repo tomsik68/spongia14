@@ -60,7 +60,7 @@ public class MissionState {
 	}
     }
 
-    final void switchPlace(String newPlaceId, String cantEnterText) {
+    public final void switchPlace(String newPlaceId, String cantEnterText) {
 	if (allowedPlaces.contains(newPlaceId)) {
 	    Place newPlace = mission.getPlace(newPlaceId);
 	    for (PlaceChangeListener listener : placeChangeListeners) {

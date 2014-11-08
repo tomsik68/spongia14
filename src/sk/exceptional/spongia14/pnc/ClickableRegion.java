@@ -2,10 +2,10 @@ package sk.exceptional.spongia14.pnc;
 
 import org.newdawn.slick.Graphics;
 
-import sk.exceptional.spongia14.api.Action;
-import sk.exceptional.spongia14.api.ActionSet;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
+import sk.exceptional.spongia14.api.actions.Action;
+import sk.exceptional.spongia14.api.actions.ActionSet;
 
 public abstract class ClickableRegion {
     private boolean remove = false;

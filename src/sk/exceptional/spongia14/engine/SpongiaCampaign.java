@@ -2,14 +2,8 @@ package sk.exceptional.spongia14.engine;
 
 import javax.naming.NameAlreadyBoundException;
 
-import sk.exceptional.spongia14.api.ActionSet;
-import sk.exceptional.spongia14.api.AddMementoAction;
-import sk.exceptional.spongia14.api.AllowAccessAction;
-import sk.exceptional.spongia14.api.CancelIfNoItem;
-import sk.exceptional.spongia14.api.ChangePersonState;
 import sk.exceptional.spongia14.api.Dialog;
 import sk.exceptional.spongia14.api.DialogActor;
-import sk.exceptional.spongia14.api.DialogStartAction;
 import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Item;
 import sk.exceptional.spongia14.api.Mission;
@@ -17,9 +11,15 @@ import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Person;
 import sk.exceptional.spongia14.api.PersonState;
 import sk.exceptional.spongia14.api.Place;
-import sk.exceptional.spongia14.api.RemoveAction;
 import sk.exceptional.spongia14.api.Replica;
 import sk.exceptional.spongia14.api.Town;
+import sk.exceptional.spongia14.api.actions.ActionSet;
+import sk.exceptional.spongia14.api.actions.AddMementoAction;
+import sk.exceptional.spongia14.api.actions.AllowAccessAction;
+import sk.exceptional.spongia14.api.actions.CancelIfNoItemAction;
+import sk.exceptional.spongia14.api.actions.ChangePersonState;
+import sk.exceptional.spongia14.api.actions.DialogStartAction;
+import sk.exceptional.spongia14.api.actions.RemoveAction;
 import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PersonContainer;
 
@@ -54,7 +54,9 @@ public class SpongiaCampaign {
 	    // entrance su dvere alebo vychod, ktory zmeni miesto
 	    // entrancy sa pridavaju do Place
 	    domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
-	    domVraha.addEntrance(new Entrance("planMesta", 300, 270, 200, 180));
+	    domVraha.addEntrance(e = new Entrance("planMesta", 300, 270, 200,
+		    180));
+	    e.cantEnterText = "Mal by som si najprv vziat zasielku. \nNechcem predsa, aby moju vyplatu dostal niekto iny.";
 	    // Item ma unikatne ID, meno a popis pre inventory a resource
 	    // background
 	    Item zasielka = new Item("zasielka1", "Vyplata",
@@ -92,22 +94,34 @@ public class SpongiaCampaign {
 
 	    town.addPlace(bytVraha);
 
-	    Place restika = new Place("restauraciaVstup",
-		    "buildings.in.restika");
+	    Place restikaVstup = new Place("restauraciaVstup",
+		    "buildings.in.restika_chodba");
+	    restikaVstup.addEntrance(new Entrance("planMesta", 350, 110, 240,
+		    205));
+	    restikaVstup.addEntrance(new Entrance("restauraciaIn1", 655, 120,
+		    128, 205));
+	    restikaVstup
+		    .addEntrance(new Entrance("pivnica", 530, 375, 150, 150));
 
 	    Person uvitaciaServirka = new Person("waitress");
 
 	    PersonState state = new PersonState("stav1");
 	    ActionSet actionSet = new ActionSet();
 	    actionSet.addAction(new DialogStartAction("dialogSoServirkou0"));
-	    actionSet.addAction(new CancelIfNoItem("stoEuro"));
+	    actionSet.addAction(new AddMementoAction("memento.memento2"));
+	    actionSet.addAction(new CancelIfNoItemAction("stoEuro"));
 	    actionSet.addAction(new ChangePersonState("waitress", "stav2"));
+	    actionSet.addAction(new DialogStartAction("dialogSoServirkou1"));
+	    actionSet.addAction(new AllowAccessAction("restauraciaIn1"));
 	    state.setAction(actionSet);
 	    uvitaciaServirka.addState(state);
 
-	    restika.addPerson(new PersonContainer(uvitaciaServirka, "stav1", 0,
-		    0));
+	    restikaVstup.addPerson(new PersonContainer(uvitaciaServirka,
+		    "stav1", 300, 330));
 
+	    town.addPlace(restikaVstup);
+
+	    Place restika = new Place("restauraciaIn1", "buildings.in.restika");
 	    town.addPlace(restika);
 
 	    // tu pridavam mesto do misie
@@ -178,7 +192,7 @@ public class SpongiaCampaign {
 		"Áno, mala by tu byť rezervácia na meno Nathan Grayson.",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Prepacte, na toto meno tu nemam rezervaciu", "wait"));
+		"Prepácte, na toto meno tu nemám rezerváciu", "wait"));
 	return dialog;
     }
 
@@ -192,12 +206,14 @@ public class SpongiaCampaign {
 	dialog.addActor(new DialogActor("wait", "Waitress", "portrait.waitress"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
+	/*
+	 * dialog.addReplica(new Replica(
+	 * "Dobrý večer pane, máte u nas rezerváciu?", "wait"));
+	 * dialog.addReplica(new Replica(
+	 * "Áno, mala by tu byť rezervácia na meno Nathan Grayson.", "murd"));
+	 */
 	dialog.addReplica(new Replica(
-		"Dobrý večer pane, máte u nas rezerváciu?", "wait"));
-	dialog.addReplica(new Replica(
-		"Áno, mala by tu byť rezervácia na meno Nathan Grayson.",
-		"murd"));
-	dialog.addReplica(new Replica("Ale iste pan Grayson, podte za mnou.",
+		"Ospravedlnujem sa pan Grayson, nech sa paci, usadte sa.",
 		"wait"));
 	return dialog;
     }

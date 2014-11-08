@@ -1,5 +1,7 @@
 package sk.exceptional.spongia14.api;
 
+import sk.exceptional.spongia14.api.actions.ActionSet;
+
 public class PersonState {
     private final String id;
     private ActionSet action;

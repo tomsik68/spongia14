@@ -1,7 +1,10 @@
-package sk.exceptional.spongia14.api;
+package sk.exceptional.spongia14.api.actions;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import sk.exceptional.spongia14.api.Mission;
+import sk.exceptional.spongia14.api.MissionState;
 
 public class ActionSet extends Action {
     private final ArrayList<Action> actions = new ArrayList<Action>();

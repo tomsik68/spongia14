@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import sk.exceptional.spongia14.api.Action;
-import sk.exceptional.spongia14.api.ActionSet;
 import sk.exceptional.spongia14.api.Item;
+import sk.exceptional.spongia14.api.actions.Action;
+import sk.exceptional.spongia14.api.actions.ActionSet;
 
 public class ItemContainer {
     private final ActionSet actionSet;

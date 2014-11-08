@@ -1,4 +1,7 @@
-package sk.exceptional.spongia14.api;
+package sk.exceptional.spongia14.api.actions;
+
+import sk.exceptional.spongia14.api.Mission;
+import sk.exceptional.spongia14.api.MissionState;
 
 public class AllowAccessAction extends Action {
 

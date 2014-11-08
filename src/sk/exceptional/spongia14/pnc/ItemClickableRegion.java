@@ -3,8 +3,8 @@ package sk.exceptional.spongia14.pnc;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Item;
+import sk.exceptional.spongia14.api.actions.Action;
 
 public class ItemClickableRegion extends StaticRectangularClickableRegion {
 

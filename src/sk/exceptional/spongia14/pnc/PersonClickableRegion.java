@@ -3,7 +3,7 @@ package sk.exceptional.spongia14.pnc;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
-import sk.exceptional.spongia14.api.Action;
+import sk.exceptional.spongia14.api.actions.Action;
 
 public class PersonClickableRegion extends RectangularClickableRegion {
     private final PersonContainer personContainer;

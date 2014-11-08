@@ -6,7 +6,7 @@ import sk.exceptional.spongia14.api.Entrance;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
 import sk.exceptional.spongia14.api.Place;
-import sk.exceptional.spongia14.api.SwitchPlaceAction;
+import sk.exceptional.spongia14.api.actions.SwitchPlaceAction;
 import sk.tomsik68.resourceslib.Resources;
 
 /**

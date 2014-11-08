@@ -1,8 +1,8 @@
 package sk.exceptional.spongia14.pnc;
 
-import sk.exceptional.spongia14.api.Action;
 import sk.exceptional.spongia14.api.Entrance;
-import sk.exceptional.spongia14.api.SwitchPlaceAction;
+import sk.exceptional.spongia14.api.actions.Action;
+import sk.exceptional.spongia14.api.actions.SwitchPlaceAction;
 
 public class EntranceClickableRegion extends StaticRectangularClickableRegion {
     private Entrance entrance;
