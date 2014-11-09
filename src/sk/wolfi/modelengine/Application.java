@@ -13,7 +13,7 @@ public class Application extends BasicGame {
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 800;
     public static final int FPS = 60;
-    public static final double DELTA_TIME = 1 / FPS;
+    public static final double DELTA_TIME = 1d / FPS;
 
     private WalkingHumanBody dude;
 
