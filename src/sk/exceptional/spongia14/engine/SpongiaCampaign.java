@@ -141,6 +141,13 @@ public class SpongiaCampaign {
 	    actionSet.addAction(new DialogStartAction("dialogSoServirkou2"));
 	    actionSet.addAction(new AddMementoAction("memento.memento3"));
 	    actionSet.addAction(new DenyAccessAction("planMesta"));
+	    actionSet.addAction(new ChangePersonState("waitress", "stav4"));
+	    state.setAction(actionSet);
+	    uvitaciaServirka.addState(state);
+	    // aby mi nezakazovala vstup do mesta
+	    state = new PersonState("stav4");
+	    actionSet = new ActionSet();
+	    actionSet.addAction(new DialogStartAction("dialogSoServirkou2"));
 	    state.setAction(actionSet);
 	    uvitaciaServirka.addState(state);
 

@@ -38,6 +38,7 @@ public class InRegionSetGameState extends BasicGameState implements
     private boolean inDialog = false;
     private boolean inMemento = false;
     private MementoGui mementoGui;
+    private GuiTopPanel topPanel;
 
     // private ClickableRegionSetContainer newContainer;
 
@@ -69,6 +70,8 @@ public class InRegionSetGameState extends BasicGameState implements
 	placeSwitched(beginning);
 	mementoGui = new MementoGui(resources.getImage("gui.memento"),
 		resources);
+	topPanel = new GuiTopPanel(resources);
+	topPanel.setMissionState(missionState);
     }
 
     @Override
@@ -82,6 +85,7 @@ public class InRegionSetGameState extends BasicGameState implements
 		gfx.fillRect(0, 0, gc.getWidth(), gc.getHeight());
 	    }
 	}
+	topPanel.render(gfx);
 	if (inMemento && !mementoGui.isDone()) {
 	    mementoGui.render(gfx);
 	}
@@ -111,8 +115,11 @@ public class InRegionSetGameState extends BasicGameState implements
 		    container.init(resources);
 		}
 	    }
-	    if (gc.getInput().isKeyPressed(Input.KEY_M)) {
+	    if (gc.getInput().isKeyPressed(Input.KEY_M)
+		    || (topPanel.isOpenMemento() && !inMemento)) {
 		mementoGui.show();
+		topPanel.setExclShown(false);
+		topPanel.setOpenMemento(false);
 		inMemento = true;
 		System.out.println("Janeviemus");
 	    }
@@ -129,7 +136,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	    }
 	    dialogWizard.update(gc);
 	}
-
+	topPanel.update(gc);
     }
 
     @Override
@@ -157,6 +164,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	 * mementoGui.showMemento(resources.getImage(mementoRes));
 	 */
 	mementoGui.addMemento(mementoRes);
+	topPanel.setExclShown(true);
     }
 
 }
