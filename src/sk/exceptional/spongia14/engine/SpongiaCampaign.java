@@ -46,7 +46,8 @@ public class SpongiaCampaign {
 	    ItemContainer ic;
 	    Entrance e;
 
-	    Place planMesta = new Place("planMesta", "buildings.out.planMesta");
+	    Place planMesta = new Place("planMesta", "buildings.out.planMesta",
+		    false);
 	    e = new Entrance("domVraha", 295, 84, 140, 140);
 	    planMesta.addEntrance(e);
 	    e = new Entrance("restauraciaVstup", 490, 70, 230, 180);
@@ -54,7 +55,8 @@ public class SpongiaCampaign {
 	    town.addPlace(planMesta);
 
 	    // place ma ID, resource background
-	    Place domVraha = new Place("domVraha", "buildings.in.domVraha");
+	    Place domVraha = new Place("domVraha", "buildings.in.domVraha",
+		    true);
 	    // entrance su dvere alebo vychod, ktory zmeni miesto
 	    // entrancy sa pridavaju do Place
 	    domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
@@ -78,7 +80,8 @@ public class SpongiaCampaign {
 	    // place treba po vsetkych upravach pridat do mesta
 	    town.addPlace(domVraha);
 
-	    Place bytVraha = new Place("bytVraha", "buildings.in.bytVraha");
+	    Place bytVraha = new Place("bytVraha", "buildings.in.bytVraha",
+		    true);
 	    // teraz mam entrance vo vlastnej premennej e typu Entrance
 	    e = new Entrance("domVraha", 657, 125, 100, 400);
 	    // tento text sa ukaze, ked sa este neda vstupit do tychto dveri
@@ -107,7 +110,7 @@ public class SpongiaCampaign {
 	    town.addPlace(bytVraha);
 
 	    Place restikaVstup = new Place("restauraciaVstup",
-		    "buildings.in.restika_chodba");
+		    "buildings.in.restika_chodba", true);
 	    restikaVstup.addEntrance(new Entrance("planMesta", 350, 110, 240,
 		    205));
 	    restikaVstup.addEntrance(new Entrance("restauraciaIn1", 655, 120,
@@ -156,7 +159,8 @@ public class SpongiaCampaign {
 
 	    town.addPlace(restikaVstup);
 
-	    Place restika = new Place("restauraciaIn1", "buildings.in.restika");
+	    Place restika = new Place("restauraciaIn1", "buildings.in.restika",
+		    true);
 	    restika.addEntrance(e = new Entrance("restauraciaVstup", 680, 80,
 		    100, 80));
 
@@ -209,7 +213,7 @@ public class SpongiaCampaign {
 	    town.addPlace(restika);
 
 	    Place restikaPivnica = new Place("restauraciaPivnica",
-		    "buildings.in.pivnica");
+		    "buildings.in.pivnica", true);
 	    restikaPivnica.addEntrance(new Entrance("restauraciaVstup", 380,
 		    200, 100, 160));
 	    Item jedNaPotkany = new Item(

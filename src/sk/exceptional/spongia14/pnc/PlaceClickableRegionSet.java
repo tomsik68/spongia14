@@ -6,7 +6,7 @@ public class PlaceClickableRegionSet extends ClickableRegionSet {
     private final Place place;
 
     public PlaceClickableRegionSet(Place place, String background) {
-	super(background);
+	super(background, place.isInside());
 	this.place = place;
     }
 

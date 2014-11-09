@@ -45,7 +45,8 @@ public class ClickableRegionSetContainer {
     public void render(Graphics gfx) {
 	gfx.drawImage(background, 0, 0);
 	regionSet.renderRegions(gfx, mouseX, mouseY);
-	player.draw();
+	if (regionSet.isRenderPlayer())
+	    player.draw();
     }
 
     private static Point getVector(Point point, Point to) {
@@ -68,9 +69,11 @@ public class ClickableRegionSetContainer {
     public void update(Input input) {
 	mouseX = input.getMouseX();
 	mouseY = input.getMouseY();
-	if (mouseY > 80 && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && !wasPressed) {
+	if (mouseY > 80 && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
+		&& !wasPressed) {
 	    clickPoint = new Point(mouseX, mouseY);
-	    if (distance(clickPoint, player.getPosition()) <= 200) {
+	    if (distance(clickPoint, player.getPosition()) <= 200
+		    || !regionSet.isRenderPlayer() || mouseY <= 300) {
 		regionSet.onClick(mission, missionState, mouseX, mouseY);
 		playerMoveVector.setLocation(0, 0);
 		player.setWalking(false);
@@ -92,7 +95,8 @@ public class ClickableRegionSetContainer {
 	if (player.getPosition().getY() < 300) {
 	    player.getPosition().setY(400);
 	}
-	player.update();
+	if (regionSet.isRenderPlayer())
+	    player.update();
     }
 
     private int distance(Point clickPoint, Point position) {

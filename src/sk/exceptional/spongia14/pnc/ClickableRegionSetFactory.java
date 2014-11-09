@@ -25,7 +25,8 @@ public class ClickableRegionSetFactory {
 	    Place place) {
 	ClickableRegionSet result;
 	if (!cache.containsKey(place.getId())) {
-	    result = new ClickableRegionSet(place.getBackgroundImage());
+	    result = new ClickableRegionSet(place.getBackgroundImage(),
+		    place.isInside());
 	    for (ItemContainer itemContainer : place.getItems()) {
 		ClickableRegion cr = new ItemClickableRegion(itemContainer,
 			resources.getImage(itemContainer.getItem()

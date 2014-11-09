@@ -14,9 +14,11 @@ public class ClickableRegionSet {
     private final ArrayList<ClickableRegion> regions = new ArrayList<ClickableRegion>();
     private HashSet<ClickableRegion> toRemove = new HashSet<ClickableRegion>();
     private static int r;
+    private final boolean renderPlayer;
 
-    public ClickableRegionSet(String background) {
+    public ClickableRegionSet(String background, boolean renderPlayer) {
 	backgroundResource = background;
+	this.renderPlayer = renderPlayer;
     }
 
     public void addRegion(ClickableRegion region) {
@@ -64,5 +66,9 @@ public class ClickableRegionSet {
 	++r;
 	if (r == 50)
 	    r = 0;
+    }
+
+    public boolean isRenderPlayer() {
+	return renderPlayer;
     }
 }

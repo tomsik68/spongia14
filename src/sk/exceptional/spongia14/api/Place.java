@@ -10,13 +10,15 @@ import sk.exceptional.spongia14.pnc.PersonContainer;
 
 public class Place {
     private final String id, backgroundImage;
+    private final boolean inside;
     private ArrayList<ItemContainer> items = new ArrayList<ItemContainer>();
     private ArrayList<PersonContainer> people = new ArrayList<PersonContainer>();
     private ArrayList<Entrance> entrances = new ArrayList<Entrance>();
 
-    public Place(String id, String bgImage) {
+    public Place(String id, String bgImage, boolean inside) {
 	this.id = id;
 	this.backgroundImage = bgImage;
+	this.inside = inside;
     }
 
     public String getId() {
@@ -49,5 +51,9 @@ public class Place {
 
     public final void addEntrance(Entrance entrance) {
 	entrances.add(entrance);
+    }
+
+    public boolean isInside() {
+	return inside;
     }
 }
