@@ -15,7 +15,7 @@ public class Extremity {
 			   // is known only after the update loop.
     private boolean isHiddenBehindTorso;
 
-    public Extremity(String name, int width, int height, String imgLocation,
+    public Extremity(String name, int width, int height, Image image,
 	    int offsetExtrJointPosX, int offsetExtrJointPosY,
 	    int offsetBodyJointPosX, int offsetBodyJointPosY,
 	    boolean isHiddenBehindTorso) {
@@ -26,11 +26,7 @@ public class Extremity {
 		offsetExtrJointPosY);
 	this.offsetBodyJointPos = new Point(offsetBodyJointPosX,
 		offsetBodyJointPosY);
-	try {
-	    this.image = new Image(imgLocation);
-	} catch (SlickException e) {
-	    e.printStackTrace();
-	}
+	this.image = image;
 	this.position = new Point(0, 0);
 	this.isHiddenBehindTorso = isHiddenBehindTorso;
     }

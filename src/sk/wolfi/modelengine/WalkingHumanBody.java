@@ -1,5 +1,7 @@
 package sk.wolfi.modelengine;
 
+import org.newdawn.slick.Image;
+
 public class WalkingHumanBody extends HumanBody {
     private boolean walking = false;
     private boolean left = true;
@@ -9,9 +11,9 @@ public class WalkingHumanBody extends HumanBody {
     private Pendulum rightHandP = new Pendulum(20, 6d, 20);
     private Pendulum[] pendulums;
 
-    public WalkingHumanBody(int x, int y, int width, int height,
-	    String imgLocation, Extremity... extremities) {
-	super(x, y, width, height, imgLocation, extremities);
+    public WalkingHumanBody(int x, int y, int width, int height, Image image,
+	    Extremity[] extremities) {
+	super(x, y, width, height, image, extremities);
 	pendulums = new Pendulum[] { leftLegP, rightLegP, leftHandP, rightHandP };
     }
 

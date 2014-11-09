@@ -23,6 +23,8 @@ import sk.exceptional.spongia14.pnc.ClickableRegionSetContainer;
 import sk.exceptional.spongia14.pnc.ClickableRegionSetFactory;
 import sk.exceptional.spongia14.pnc.PlaceChangeListener;
 import sk.tomsik68.resourceslib.Resources;
+import sk.wolfi.modelengine.WalkingHumanBody;
+import sk.wolfi.modelengine.WalkingHumanBodyFactory;
 
 public class InRegionSetGameState extends BasicGameState implements
 	PlaceChangeListener, DialogTriggerListener, MementoAddListener {
@@ -39,6 +41,7 @@ public class InRegionSetGameState extends BasicGameState implements
     private boolean inMemento = false;
     private MementoGui mementoGui;
     private GuiTopPanel topPanel;
+    private WalkingHumanBody player;
 
     // private ClickableRegionSetContainer newContainer;
 
@@ -72,6 +75,8 @@ public class InRegionSetGameState extends BasicGameState implements
 		resources);
 	topPanel = new GuiTopPanel(resources);
 	topPanel.setMissionState(missionState);
+
+	//player = WalkingHumanBodyFactory.create();
     }
 
     @Override
