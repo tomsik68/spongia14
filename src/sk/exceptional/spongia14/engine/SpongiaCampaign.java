@@ -60,7 +60,7 @@ public class SpongiaCampaign {
 	    domVraha.addEntrance(new Entrance("bytVraha", 612, 234, 150, 300));
 	    domVraha.addEntrance(e = new Entrance("planMesta", 300, 270, 200,
 		    180));
-	    e.cantEnterText = "Mal by som si najprv vziat zasielku. \nNechcem predsa, aby moju vyplatu dostal niekto iny.";
+	    e.cantEnterText = "Mal by som si najprv vziať zásielku. Nechcem predsa, aby moju výplatu dostal niekto iný.";
 	    // Item ma unikatne ID, meno a popis pre inventory a resource
 	    // background
 	    Item zasielka = new Item("zasielka1", "Vyplata",
@@ -82,7 +82,7 @@ public class SpongiaCampaign {
 	    // teraz mam entrance vo vlastnej premennej e typu Entrance
 	    e = new Entrance("domVraha", 657, 125, 100, 400);
 	    // tento text sa ukaze, ked sa este neda vstupit do tychto dveri
-	    e.cantEnterText = "Mal by som najprv zodvihnut mobil.\nVola mi boss, takze ho nesmiem nechat dlho cakat.\nVyzera to tak, ze budem mat dalsiu pracu...";
+	    e.cantEnterText = "Mal by som najprv zodvihnúť mobil. Volá mi boss, takže ho nesmiem nechat dlho čakat. Vyzerá to tak, že budem mať dalšiu prácu...";
 	    bytVraha.addEntrance(e);
 
 	    Item mobil = new Item("mobilVraha", "Tvoj mobil.",
@@ -273,27 +273,27 @@ public class SpongiaCampaign {
 	dialog.addActor(new DialogActor("boss", "TEN boss", "portrait.boss"));
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
-	dialog.addReplica(new Replica("Halo? Michael Greenwich pri telefone.",
+	dialog.addReplica(new Replica("Haló? Michael Greenwich pri telefóne.",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Co ti tak dlho trvalo? Za co ta platim?", "boss"));
+		"Čo ti tak dlho trvalo? Za čo ta platim?", "boss"));
 	dialog.addReplica(new Replica(
-		"Prepacte sefe, mal som tazke rano. Som Vam plne k dispozicii.\nCo by ste potrebovali?",
+		"Prepáčte šéfe, mal som ťažké ráno. Som Vám plne k dispozícii. Čo by ste potrebovali?",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Mam pre teba pracu. Potreboval by som, aby si sa zbavil jedneho cloveka.\nSposobuje nam vazne problemy. Informacie o tvojom cieli\n ti uz urcite davno prisli v zasielke ty spachtos. \nV tej zasielke mas aj prvu polovicu vyplaty. \nDruhu ako obvykle dostanes po splneni prace.",
+		"Mám pre teba pracu. Potreboval by som, aby si sa zbavil jedného človeka. Spôsobuje nám vážne problémy. Informácie o tvojom cieli ti už určite dávno prišli v zásielke ty spachtoš. V tej zásielke máš aj prvú polovicu výplaty. Druhú, ako obvykle, dostaneš po splnení práce.",
 		"boss"));
 	dialog.addReplica(new Replica(
-		"Rozumiem, mame este nejake doplnujuce info ktore nenajdem v zasielke?",
+		"Rozumiem, máte ešte nejake doplnujuce info ktoré nenájdem v zásielke?",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Ano,tento ciel je velmi slizky a uz dlho sa ho snazime zabit.\nAk sa ti to nepodari bude trvat velmi dlho kym ho zas najdeme tak ma nesklam.",
+		"Áno, tento cieľ je veľmi slizký a už dlho sa ho snažíme zbaviť. Ak sa ti to nepodarí bude trvať veľmi dlho, kým ho zas nájdeme tak ma nesklam.",
 		"boss"));
-	dialog.addReplica(new Replica("Ozvem sa ked to bude hotove.", "murd"));
+	dialog.addReplica(new Replica("Ozvem sa keď to bude hotové.", "murd"));
 	dialog.addReplica(new Replica(
-		"Este jedna vec,jedina fotka ciela ktoru mame je velmi rozmazana,\n takze sa najprv dobre uisti ze je to tvoj ciel.",
+		"Ešte jedna vec,jediná fotka cieľa, ktorú mame, je veľmi rozmazaná, takže sa najprv dobre uisti že máš správneho.",
 		"boss"));
-	dialog.addReplica(new Replica("Vykonam. Zatial.", "murd"));
+	dialog.addReplica(new Replica("Vykonám. Zatiaľ.", "murd"));
 	return dialog;
     }
 
@@ -313,7 +313,7 @@ public class SpongiaCampaign {
 		"Áno, mala by tu byť rezervácia na meno Nathan Grayson.",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Prepácte, na toto meno tu nemám rezerváciu", "wait"));
+		"Prepáčte, na toto meno tu nemám rezerváciu", "wait"));
 	return dialog;
     }
 
@@ -334,7 +334,7 @@ public class SpongiaCampaign {
 	 * "Áno, mala by tu byť rezervácia na meno Nathan Grayson.", "murd"));
 	 */
 	dialog.addReplica(new Replica(
-		"Ospravedlnujem sa pan Grayson, nech sa paci, usadte sa.",
+		"Ospravedlňujem sa pan Grayson, nech sa páči, usaďte sa.",
 		"wait"));
 	return dialog;
     }
@@ -350,10 +350,10 @@ public class SpongiaCampaign {
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Prepáčte ešte na minútku, ako som išiel k stolu tak sa mi zdalo,\n že som spatril starého priateľa. Má tu niekto stôl na meno Graham?",
+		"Prepáčte ešte na minútku, ako som išiel k stolu tak sa mi zdalo, že som spatril starého priateľa. Má tu niekto stôl na meno Graham?",
 		"murd"));
 	dialog.addReplica(new Replica(
-		"Ano má. Pán graham sedí tamto v strede.", "wait"));
+		"Ano má. Pán Graham sedí tamto v strede.", "wait"));
 	return dialog;
     }
 
@@ -368,7 +368,7 @@ public class SpongiaCampaign {
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Je mi ľúto pane, ale pri neštastnej náhode sa nám stratila vaša objednávka.\n Mohli by ste mi ju prosim dať znova?",
+		"Je mi ľúto pane, ale pri neštastnej náhode sa nám stratila vaša objednávka. Mohli by ste mi ju prosim dať znova?",
 		"murd"));
 	dialog.addReplica(new Replica(
 		"Zaiste, objednal som si steak s hranolkami.", "targ"));
@@ -403,7 +403,7 @@ public class SpongiaCampaign {
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Ďakujem, mozete ma nechat v klude jest?\n Z toho jedla ide nejaka divna vona. Rad skusam nove veci.",
+		"Ďakujem, mozete ma nechat v klude jest? Z toho jedla ide nejaká divná vôňa. Rád skúšam nové veci.",
 		"targ"));
 	return dialog;
     }
@@ -419,10 +419,10 @@ public class SpongiaCampaign {
 	// repliky dialogov
 	// replika ma text a ID actora, ktory ju hovori
 	dialog.addReplica(new Replica(
-		"Prinesiete mi uz to jedlo?\n Zacinam mat chut... odist bez platenia!",
+		"Prinesiete mi už to jedlo? Začínam mať chuť... odísť bez platenia!",
 		"targ"));
 	dialog.addReplica(new Replica(
-		"Zaiste. Poprosim Vas o chvilu strpenia.", "murd"));
+		"Zaiste. Poprosím Vas o chvíľu strpenia.", "murd"));
 
 	return dialog;
     }
