@@ -4,11 +4,10 @@ import org.newdawn.slick.Image;
 
 public class WalkingHumanBody extends HumanBody {
     private boolean walking = false;
-    private boolean left = true;
-    private Pendulum leftLegP = new Pendulum(20, 6d, 20);
-    private Pendulum rightLegP = new Pendulum(20, 6d, -20);
-    private Pendulum leftHandP = new Pendulum(20, 6d, -20);
-    private Pendulum rightHandP = new Pendulum(20, 6d, 20);
+    private Pendulum leftLegP = new Pendulum(20, 6d, Math.PI / 2);
+    private Pendulum rightLegP = new Pendulum(20, 6d, 0);
+    private Pendulum leftHandP = new Pendulum(20, 6d, 0);
+    private Pendulum rightHandP = new Pendulum(20, 6d, Math.PI / 2);
     private Pendulum[] pendulums;
 
     public WalkingHumanBody(int x, int y, int width, int height, Image image,
@@ -37,13 +36,5 @@ public class WalkingHumanBody extends HumanBody {
 
     public boolean isWalking() {
 	return walking;
-    }
-
-    public boolean isLeft() {
-	return left;
-    }
-
-    public void setLeft(boolean left) {
-	this.left = left;
     }
 }

@@ -17,6 +17,7 @@ public class Application extends BasicGame {
     public static final double DELTA_TIME = 1d / FPS;
 
     private WalkingHumanBody dude;
+    private Image domVraha;
 
     public Application() {
 	super("Model");
@@ -29,15 +30,31 @@ public class Application extends BasicGame {
 	 * 
 	 * dude = new HumanBody( new Extremity(...), ... );
 	 */
-
-	dude = new WalkingHumanBody(100, 150, 244, 367, new Image(
-		"res/ppl/greenwich/torso.png"),
-		new Extremity("head", 233, 308, new Image("res/ppl/greenwich/head.png"), 117, 308, 100, 33, false),
-		new Extremity("leftArm", 100, 306, new Image("res/ppl/greenwich/right_arm.png"), 40, 20,70, 102, true),
-		new Extremity("rightArm", 100, 306, new Image("res/ppl/greenwich/right_arm.png"), 40, 20, 210, 88, false),
-		new Extremity("leftLeg", 148, 318, new Image("res/ppl/greenwich/left_leg.png"), 70, 20, 34,265, true),
-		new Extremity("rightLeg", 128, 329, new Image("res/ppl/greenwich/right_leg.png"), 70, 20, 122, 275, true)
-	);
+	domVraha = new Image("res/buildings/in/domVraha.png");
+	float c = 0.5f * 0.8f;
+	dude = new WalkingHumanBody((int) (100 * c), (int) (150 * c),
+		(int) (31 * c), (int) (46 * c), new Image(
+			"res/ppl/greenwich/torso.png"),
+		new Extremity("head", (int) (233 * c), (int) (308 * c),
+			new Image("res/ppl/greenwich/head.png"),
+			(int) (117 * c), (int) (308 * c), (int) (100 * c),
+			(int) (33 * c), false), new Extremity("leftArm",
+			(int) (100 * c), (int) (306 * c), new Image(
+				"res/ppl/greenwich/right_arm.png"),
+			(int) (40 * c), (int) (20 * c), (int) (70 * c),
+			(int) (102 * c), true), new Extremity("rightArm",
+			(int) (100 * c), (int) (306 * c), new Image(
+				"res/ppl/greenwich/right_arm.png"),
+			(int) (40 * c), (int) (20 * c), (int) (210 * c),
+			(int) (88 * c), false), new Extremity("leftLeg",
+			(int) (148 * c), (int) (318 * c), new Image(
+				"res/ppl/greenwich/left_leg.png"),
+			(int) (70 * c), (int) (20 * c), (int) (34 * c),
+			(int) (265 * c), true), new Extremity("rightLeg",
+			(int) (128 * c), (int) (329 * c), new Image(
+				"res/ppl/greenwich/right_leg.png"),
+			(int) (70 * c), (int) (20 * c), (int) (122 * c),
+			(int) (275 * c), true));
     }
 
     @Override
@@ -81,7 +98,9 @@ public class Application extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
+	domVraha.draw();
 	dude.draw();
+
 	Display.sync(FPS);
     }
 

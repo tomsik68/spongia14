@@ -13,6 +13,7 @@ public class HumanBody {
     private Point offsetJointPos;
     private Image image;
     private List<Extremity> extremities;
+    private boolean hflip = false;
 
     public HumanBody(int x, int y, int width, int height, Image image,
 	    Extremity... extremities) {
@@ -44,7 +45,6 @@ public class HumanBody {
 		e.draw(this.position);
 	    }
 	}
-
 	this.image.draw(this.position.getX(), this.position.getY());
 	for (Extremity e : this.extremities) {
 	    if (!e.isHiddenBehindTorso()) {
