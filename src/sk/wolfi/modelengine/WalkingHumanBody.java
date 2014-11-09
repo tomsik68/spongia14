@@ -12,7 +12,7 @@ public class WalkingHumanBody extends HumanBody {
     private Pendulum[] pendulums;
 
     public WalkingHumanBody(int x, int y, int width, int height, Image image,
-	    Extremity[] extremities) {
+	    Extremity... extremities) {
 	super(x, y, width, height, image, extremities);
 	pendulums = new Pendulum[] { leftLegP, rightLegP, leftHandP, rightHandP };
     }

@@ -7,7 +7,7 @@ public class Pendulum {
     public Pendulum(double ampl, double freq) {
 	this(ampl, freq, Math.random() * 360);
     }
-    
+
     public Pendulum(double ampl, double freq, double phase) {
 	this.amplitude = ampl;
 	this.frequency = freq;
@@ -17,6 +17,10 @@ public class Pendulum {
 
     public void update(double deltaTime) {
 	time += deltaTime;
+	// ochrana proti preteceniu
+	if (time >= Double.MAX_VALUE - 50) {
+	    time = 0;
+	}
     }
 
     public double getPos() {

@@ -31,14 +31,13 @@ public class Application extends BasicGame {
 	 */
 
 	dude = new WalkingHumanBody(100, 150, 244, 367, new Image(
-		"res/torso.png"), new Extremity("head", 233, 308, new Image(
-		"res/head.png"), 117, 308, 100, 33, false), new Extremity(
-		"leftArm", 100, 306, new Image("res/right_arm.png"), 40, 20,
-		70, 102, true), new Extremity("rightArm", 100, 306, new Image(
-		"res/right_arm.png"), 40, 20, 210, 88, false), new Extremity(
-		"leftLeg", 148, 318, new Image("res/left_leg.png"), 70, 20, 34,
-		265, true), new Extremity("rightLeg", 128, 329, new Image(
-		"res/right_leg.png"), 70, 20, 122, 275, true));
+		"res/ppl/greenwich/torso.png"),
+		new Extremity("head", 233, 308, new Image("res/ppl/greenwich/head.png"), 117, 308, 100, 33, false),
+		new Extremity("leftArm", 100, 306, new Image("res/ppl/greenwich/right_arm.png"), 40, 20,70, 102, true),
+		new Extremity("rightArm", 100, 306, new Image("res/ppl/greenwich/right_arm.png"), 40, 20, 210, 88, false),
+		new Extremity("leftLeg", 148, 318, new Image("res/ppl/greenwich/left_leg.png"), 70, 20, 34,265, true),
+		new Extremity("rightLeg", 128, 329, new Image("res/ppl/greenwich/right_leg.png"), 70, 20, 122, 275, true)
+	);
     }
 
     @Override

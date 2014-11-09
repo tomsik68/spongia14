@@ -15,7 +15,7 @@ public class HumanBody {
     private List<Extremity> extremities;
 
     public HumanBody(int x, int y, int width, int height, Image image,
-	    Extremity[] extremities) {
+	    Extremity... extremities) {
 	this.width = width;
 	this.height = height;
 	this.position = new Point(x, y);
