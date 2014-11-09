@@ -21,6 +21,7 @@ public class ActionSet extends Action {
     @Override
     public void execute(Mission mission, MissionState state) {
 	for (Action action : actions) {
+	    System.out.println(action.getClass().getSimpleName());
 	    action.execute(mission, state);
 	    if (action instanceof CancelAction) {
 		CancelAction cancelAction = (CancelAction) action;
