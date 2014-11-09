@@ -12,7 +12,8 @@ public class Application extends BasicGame {
 
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 800;
-    public static final double DELTA_TIME = 1 / 60d;
+    public static final int FPS = 60;
+    public static final double DELTA_TIME = 1 / FPS;
 
     private WalkingHumanBody dude;
 
@@ -29,10 +30,12 @@ public class Application extends BasicGame {
 	 */
 
 	dude = new WalkingHumanBody(100, 150, 244, 367, "res/torso.png",
-		new Extremity("head", 233, 308, "res/head.png", 117, 308, 100,33, false), 
-		new Extremity("leftArm", 100, 306,"res/right_arm.png", 40, 20, 70, 102, true),
-		new Extremity("rightArm", 100, 306, "res/right_arm.png", 40,20, 210, 88, false), 
-		new Extremity("leftLeg", 148, 318,"res/left_leg.png", 70, 20, 34, 265, true),
+		new Extremity("head", 233, 308, "res/head.png", 117, 308, 100,
+			33, false), new Extremity("leftArm", 100, 306,
+			"res/right_arm.png", 40, 20, 70, 102, true),
+		new Extremity("rightArm", 100, 306, "res/right_arm.png", 40,
+			20, 210, 88, false), new Extremity("leftLeg", 148, 318,
+			"res/left_leg.png", 70, 20, 34, 265, true),
 		new Extremity("rightLeg", 128, 329, "res/right_leg.png", 70,
 			20, 122, 275, true));
     }
@@ -79,7 +82,7 @@ public class Application extends BasicGame {
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
 	dude.draw();
-	Display.sync(60);
+	Display.sync(FPS);
     }
 
     public static void main(String[] args) {
