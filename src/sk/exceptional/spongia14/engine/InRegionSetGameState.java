@@ -28,11 +28,11 @@ import sk.wolfi.modelengine.WalkingHumanBodyFactory;
 
 public class InRegionSetGameState extends BasicGameState implements
 	PlaceChangeListener, DialogTriggerListener, MementoAddListener {
-    public static final int STATE_ID = 0;
+    public static final int STATE_ID = 1;
     private Mission mission;
     private MissionState missionState;
     private ClickableRegionSetContainer container;
-    private final Resources resources = new Resources();
+
     private ClickableRegionSetFactory crsFactory;
     private int fadeTimer = 0;
     private Place newPlace;
@@ -42,12 +42,15 @@ public class InRegionSetGameState extends BasicGameState implements
     private MementoGui mementoGui;
     private GuiTopPanel topPanel;
     private WalkingHumanBody player;
+    private Resources resources;
 
     // private ClickableRegionSetContainer newContainer;
 
     @Override
-    public void init(GameContainer arg0, StateBasedGame arg1)
+    public void init(GameContainer arg0, StateBasedGame game)
 	    throws SlickException {
+	SpongiaGame g = (SpongiaGame) game;
+	resources = g.getResources();
 	try {
 	    resources.load(new File("res"));
 	} catch (Exception e) {
@@ -76,7 +79,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	topPanel = new GuiTopPanel(resources);
 	topPanel.setMissionState(missionState);
 
-	//player = WalkingHumanBodyFactory.create();
+	// player = WalkingHumanBodyFactory.create();
     }
 
     @Override
