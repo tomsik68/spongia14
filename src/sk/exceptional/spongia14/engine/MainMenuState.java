@@ -9,8 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import sk.tomsik68.resourceslib.Resources;
-
 public class MainMenuState extends BasicGameState {
 
     public static final int STATE_ID = 0;

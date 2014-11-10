@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import sk.exceptional.spongia14.api.Dialog;
 import sk.exceptional.spongia14.api.DialogTriggerListener;
+import sk.exceptional.spongia14.api.GameWinListener;
 import sk.exceptional.spongia14.api.MementoAddListener;
 import sk.exceptional.spongia14.api.Mission;
 import sk.exceptional.spongia14.api.MissionState;
@@ -27,7 +28,8 @@ import sk.wolfi.modelengine.WalkingHumanBody;
 import sk.wolfi.modelengine.WalkingHumanBodyFactory;
 
 public class InRegionSetGameState extends BasicGameState implements
-	PlaceChangeListener, DialogTriggerListener, MementoAddListener {
+	PlaceChangeListener, DialogTriggerListener, MementoAddListener,
+	GameWinListener {
     public static final int STATE_ID = 1;
     private Mission mission;
     private MissionState missionState;
@@ -43,6 +45,7 @@ public class InRegionSetGameState extends BasicGameState implements
     private GuiTopPanel topPanel;
     private WalkingHumanBody player;
     private Resources resources;
+    private boolean win = false;
 
     // private ClickableRegionSetContainer newContainer;
 
@@ -71,6 +74,7 @@ public class InRegionSetGameState extends BasicGameState implements
 	missionState.addPlaceChangeListener(this);
 	missionState.addDialogListener(this);
 	missionState.addMementoListener(this);
+	missionState.addWinListener(this);
 	SpongiaCampaign.prepareState(missionState);
 	Place beginning = mission.getPlace(SpongiaCampaign.getBeginningPlace());
 	placeSwitched(beginning);
@@ -145,6 +149,9 @@ public class InRegionSetGameState extends BasicGameState implements
 	    dialogWizard.update(gc);
 	}
 	topPanel.update(gc);
+	if (win) {
+	    game.enterState(GameWonState.STATE_ID);
+	}
     }
 
     @Override
@@ -173,6 +180,11 @@ public class InRegionSetGameState extends BasicGameState implements
 	 */
 	mementoGui.addMemento(mementoRes);
 	topPanel.setExclShown(true);
+    }
+
+    @Override
+    public void onGameWin() {
+	win = true;
     }
 
 }

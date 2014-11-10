@@ -13,6 +13,7 @@ public class MissionState {
     private ArrayList<PlaceChangeListener> placeChangeListeners = new ArrayList<PlaceChangeListener>();
     private ArrayList<DialogTriggerListener> dialogListeners = new ArrayList<DialogTriggerListener>();
     private ArrayList<MementoAddListener> mementoListeners = new ArrayList<MementoAddListener>();
+    private ArrayList<GameWinListener> winListeners = new ArrayList<GameWinListener>();
     private final Inventory inventory;
     private final Mission mission;
     private final HashSet<String> allowedPlaces;
@@ -88,6 +89,10 @@ public class MissionState {
 	dialogListeners.add(listener);
     }
 
+    public final void addWinListener(GameWinListener listener) {
+	winListeners.add(listener);
+    }
+
     public final void allowEntrance(String placeID) {
 	allowedPlaces.add(placeID);
     }
@@ -108,5 +113,11 @@ public class MissionState {
 
     public void denyAccess(String placeId) {
 	allowedPlaces.remove(placeId);
+    }
+
+    public void win() {
+	for (GameWinListener listener : winListeners) {
+	    listener.onGameWin();
+	}
     }
 }

@@ -27,6 +27,7 @@ public class SpongiaGame extends StateBasedGame {
 	arg0.setShowFPS(false);
 	addState(new MainMenuState());
 	addState(new InRegionSetGameState());
+	addState(new GameWonState());
     }
 
     public Resources getResources() {

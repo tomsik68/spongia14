@@ -14,6 +14,7 @@ import sk.exceptional.spongia14.api.Place;
 import sk.exceptional.spongia14.api.Replica;
 import sk.exceptional.spongia14.api.Town;
 import sk.exceptional.spongia14.api.actions.ActionSet;
+import sk.exceptional.spongia14.api.actions.ActionWin;
 import sk.exceptional.spongia14.api.actions.AddMementoAction;
 import sk.exceptional.spongia14.api.actions.AllowAccessAction;
 import sk.exceptional.spongia14.api.actions.CancelIfNoItemAction;
@@ -200,6 +201,7 @@ public class SpongiaCampaign {
 	    actionSet.addAction(new DialogStartAction("dialogSTargetom3"));
 	    actionSet.addAction(new ChangePersonState("jasonGraham",
 		    "dakujemChutiMi"));
+	    actionSet.addAction(new ActionWin());
 	    actionSet.addAction(new AllowAccessAction("planMesta"));
 
 	    state.setAction(actionSet);
