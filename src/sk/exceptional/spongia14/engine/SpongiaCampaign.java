@@ -25,6 +25,7 @@ import sk.exceptional.spongia14.api.actions.RemoveAction;
 import sk.exceptional.spongia14.api.actions.TakeItemAction;
 import sk.exceptional.spongia14.pnc.ItemContainer;
 import sk.exceptional.spongia14.pnc.PersonContainer;
+import sk.exceptional.spongia14.pnc.StaticPersonModel;
 
 public class SpongiaCampaign {
 
@@ -45,6 +46,7 @@ public class SpongiaCampaign {
 
 	    ItemContainer ic;
 	    Entrance e;
+	    PersonContainer pc;
 
 	    Place planMesta = new Place("planMesta", "buildings.out.planMesta",
 		    false);
@@ -154,8 +156,9 @@ public class SpongiaCampaign {
 	    state.setAction(actionSet);
 	    uvitaciaServirka.addState(state);
 
-	    restikaVstup.addPerson(new PersonContainer(uvitaciaServirka,
-		    "stav1", 300, 330));
+	    restikaVstup.addPerson(pc = new PersonContainer(uvitaciaServirka,
+		    "stav1", 260, 160));
+	    pc.setModel(new StaticPersonModel("ppl.servitka"));
 
 	    town.addPlace(restikaVstup);
 
@@ -208,8 +211,9 @@ public class SpongiaCampaign {
 	    state.setAction(actionSet);
 	    target1.addState(state);
 
-	    restika.addPerson(new PersonContainer(target1,
-		    "stratilaSaObjednavka", 333, 398));
+	    restika.addPerson(pc = new PersonContainer(target1,
+		    "stratilaSaObjednavka", 333, 298));
+	    pc.setModel(new StaticPersonModel("ppl.obed"));
 	    town.addPlace(restika);
 
 	    Place restikaPivnica = new Place("restauraciaPivnica",

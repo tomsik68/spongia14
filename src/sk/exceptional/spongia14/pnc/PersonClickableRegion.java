@@ -15,8 +15,7 @@ public class PersonClickableRegion extends RectangularClickableRegion {
     @Override
     public void render(Graphics gfx) {
 	gfx.setColor(Color.black);
-	gfx.fillRect(personContainer.getX(), personContainer.getY(),
-		personContainer.getWidth(), personContainer.getHeight());
+	personContainer.getModel().render(gfx, getX(), getY());
     }
 
     @Override

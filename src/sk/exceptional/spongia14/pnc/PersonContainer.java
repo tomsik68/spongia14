@@ -6,6 +6,7 @@ import sk.exceptional.spongia14.api.PersonState;
 public class PersonContainer {
     private final Person person;
     private PersonState currentState;
+    private PersonModel model;
     private int x, y;
 
     public PersonContainer(Person person, String defState, int x, int y) {
@@ -49,5 +50,13 @@ public class PersonContainer {
 
     public void setState(String state) {
 	this.currentState = person.getState(state);
+    }
+
+    public PersonModel getModel() {
+	return model;
+    }
+
+    public void setModel(PersonModel model) {
+	this.model = model;
     }
 }

@@ -37,6 +37,7 @@ public class ClickableRegionSetFactory {
 	    for (PersonContainer personContainer : place.getPeople()) {
 		PersonClickableRegion reg = new PersonClickableRegion(
 			personContainer);
+		personContainer.getModel().init(resources);
 		result.addRegion(reg);
 		state.addPersonShortcut(personContainer);
 	    }
